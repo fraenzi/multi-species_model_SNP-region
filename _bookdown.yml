@@ -1,0 +1,4 @@
+book_filename: "multi-species_model_SNP-region"
+output_dir: "docs"
+delete_merged_file: true
+new_session: yes
