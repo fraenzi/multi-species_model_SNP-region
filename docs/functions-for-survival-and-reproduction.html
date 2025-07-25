@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Functions for survival and reproduction | Tryout of the system model</title>
+  <meta name="description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Functions for survival and reproduction | Tryout of the system model" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/figures/titlepicture.jpg" />
+  <meta property="og:description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
+  <meta name="github-repo" content="fraenzi/multi-species_model_SNP-region" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Functions for survival and reproduction | Tryout of the system model" />
+  
+  <meta name="twitter:description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
+  <meta name="twitter:image" content="/figures/titlepicture.jpg" />
+
+<meta name="author" content="Fränzi Korner-Nievergelt" />
+
+
+<meta name="date" content="2025-07-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="terminology.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>3</b> Terminology</a></li>
+<li class="chapter" data-level="4" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html"><i class="fa fa-check"></i><b>4</b> Functions for survival and reproduction</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#wolf"><i class="fa fa-check"></i><b>4.1</b> Wolf</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#survival"><i class="fa fa-check"></i><b>4.1.1</b> Survival</a></li>
+<li class="chapter" data-level="4.1.2" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#reproduction"><i class="fa fa-check"></i><b>4.1.2</b> Reproduction</a></li>
+<li class="chapter" data-level="4.1.3" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#carrying-capacity"><i class="fa fa-check"></i><b>4.1.3</b> Carrying capacity</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#red-deer"><i class="fa fa-check"></i><b>4.2</b> Red deer</a></li>
+<li class="chapter" data-level="4.3" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#red-deer-reproduction"><i class="fa fa-check"></i><b>4.3</b> Red deer reproduction</a></li>
+<li class="chapter" data-level="4.4" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#red-deer-proportions-inside-the-park"><i class="fa fa-check"></i><b>4.4</b> Red deer proportions inside the park</a></li>
+<li class="chapter" data-level="4.5" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#chamois"><i class="fa fa-check"></i><b>4.5</b> Chamois</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#chamois-survival"><i class="fa fa-check"></i><b>4.5.1</b> Chamois survival</a></li>
+<li class="chapter" data-level="4.5.2" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#chamois-reproduction"><i class="fa fa-check"></i><b>4.5.2</b> Chamois reproduction</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="functions-for-survival-and-reproduction.html"><a href="functions-for-survival-and-reproduction.html#model"><i class="fa fa-check"></i><b>4.6</b> Model</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>5</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tryout of the system model</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functions-for-survival-and-reproduction" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Functions for survival and reproduction<a href="functions-for-survival-and-reproduction.html#functions-for-survival-and-reproduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="wolf" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Wolf<a href="functions-for-survival-and-reproduction.html#wolf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="survival" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Survival<a href="functions-for-survival-and-reproduction.html#survival" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We assume that wolf survival is higher the higher the deer population</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="functions-for-survival-and-reproduction.html#cb1-1" tabindex="-1"></a><span class="co"># Funktion sollte enthalten: 1. Simulation korrelierter Modellkoeffizienten, simulation verschiedener Survivalwerte</span></span>
+<span id="cb1-2"><a href="functions-for-survival-and-reproduction.html#cb1-2" tabindex="-1"></a>FUNwolfS1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(<span class="sc">-</span><span class="fl">0.9</span> <span class="sc">+</span> <span class="fl">0.6</span><span class="sc">*</span>x)  </span>
+<span id="cb1-3"><a href="functions-for-survival-and-reproduction.html#cb1-3" tabindex="-1"></a>FUNwolfS2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(<span class="dv">0</span> <span class="sc">+</span> <span class="fl">0.6</span><span class="sc">*</span>x)</span>
+<span id="cb1-4"><a href="functions-for-survival-and-reproduction.html#cb1-4" tabindex="-1"></a>FUNwolfS3plus <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(<span class="fl">0.6</span> <span class="sc">+</span> <span class="fl">0.6</span><span class="sc">*</span>x)</span>
+<span id="cb1-5"><a href="functions-for-survival-and-reproduction.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="functions-for-survival-and-reproduction.html#cb1-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">100</span>)  <span class="co"># 0 = no ungulates, 1 =maximum number of ungulates</span></span>
+<span id="cb1-7"><a href="functions-for-survival-and-reproduction.html#cb1-7" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">FUNwolfS1</span>(x)</span>
+<span id="cb1-8"><a href="functions-for-survival-and-reproduction.html#cb1-8" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">FUNwolfS2</span>(x)</span>
+<span id="cb1-9"><a href="functions-for-survival-and-reproduction.html#cb1-9" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="fu">FUNwolfS3plus</span>(x)</span>
+<span id="cb1-10"><a href="functions-for-survival-and-reproduction.html#cb1-10" tabindex="-1"></a>  </span>
+<span id="cb1-11"><a href="functions-for-survival-and-reproduction.html#cb1-11" tabindex="-1"></a><span class="fu">plot</span>(x, y1, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;orange&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Food availability&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Annual survival of the Wolf&quot;</span>,</span>
+<span id="cb1-12"><a href="functions-for-survival-and-reproduction.html#cb1-12" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb1-13"><a href="functions-for-survival-and-reproduction.html#cb1-13" tabindex="-1"></a><span class="fu">lines</span>(x, y2, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;orange3&quot;</span>)</span>
+<span id="cb1-14"><a href="functions-for-survival-and-reproduction.html#cb1-14" tabindex="-1"></a><span class="fu">lines</span>(x, y3, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;brown&quot;</span>)</span>
+<span id="cb1-15"><a href="functions-for-survival-and-reproduction.html#cb1-15" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="functions-for-survival-and-reproduction.html#cb1-16" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>, <span class="st">&quot;orange3&quot;</span>, <span class="st">&quot;brown&quot;</span>), <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;first year&quot;</span>, <span class="st">&quot;second year&quot;</span>, <span class="st">&quot;third year and older&quot;</span>))</span></code></pre></div>
+<p><img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="reproduction" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Reproduction<a href="functions-for-survival-and-reproduction.html#reproduction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We assume that a wolf litter is between 1 and 11 pups, with litters of 4-6 being most frequent.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="functions-for-survival-and-reproduction.html#cb2-1" tabindex="-1"></a>littersize <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span></span>
+<span id="cb2-2"><a href="functions-for-survival-and-reproduction.html#cb2-2" tabindex="-1"></a>problittersize0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.5</span>, <span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="functions-for-survival-and-reproduction.html#cb2-3" tabindex="-1"></a>problittersize <span class="ot">&lt;-</span> problittersize0<span class="sc">/</span><span class="fu">sum</span>(problittersize0)</span>
+<span id="cb2-4"><a href="functions-for-survival-and-reproduction.html#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="functions-for-survival-and-reproduction.html#cb2-5" tabindex="-1"></a><span class="fu">barplot</span>(problittersize, <span class="at">names=</span>littersize, <span class="at">xlab=</span><span class="st">&quot;Litter size&quot;</span>)</span></code></pre></div>
+<p><img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="functions-for-survival-and-reproduction.html#cb3-1" tabindex="-1"></a>FUNwolfnpups <span class="ot">&lt;-</span> <span class="cf">function</span>(nfemalesW){</span>
+<span id="cb3-2"><a href="functions-for-survival-and-reproduction.html#cb3-2" tabindex="-1"></a>  litters <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>, <span class="at">prob=</span>problittersize, <span class="at">size=</span>nfemalesW, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a href="functions-for-survival-and-reproduction.html#cb3-3" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sum</span>(litters))</span>
+<span id="cb3-4"><a href="functions-for-survival-and-reproduction.html#cb3-4" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="carrying-capacity" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Carrying capacity<a href="functions-for-survival-and-reproduction.html#carrying-capacity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="functions-for-survival-and-reproduction.html#cb4-1" tabindex="-1"></a>wolfmaxN <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># is used in the model to normalise the effect of wolf in the ecosystem</span></span>
+<span id="cb4-2"><a href="functions-for-survival-and-reproduction.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="functions-for-survival-and-reproduction.html#cb4-3" tabindex="-1"></a>ungulatesmaxN <span class="ot">&lt;-</span> <span class="dv">3000</span> <span class="co"># is used in the model to normalise the effect of ungulates on the wolf</span></span></code></pre></div>
+</div>
+</div>
+<div id="red-deer" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Red deer<a href="functions-for-survival-and-reproduction.html#red-deer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hunting starts in September (whole months), if quota not fulfilled, there is another hunt in October for around 10 days.</p>
+<p>###survival</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="functions-for-survival-and-reproduction.html#cb5-1" tabindex="-1"></a><span class="co"># expected population growth rate </span></span>
+<span id="cb5-2"><a href="functions-for-survival-and-reproduction.html#cb5-2" tabindex="-1"></a>S1 <span class="ot">&lt;-</span> <span class="fl">0.6</span></span>
+<span id="cb5-3"><a href="functions-for-survival-and-reproduction.html#cb5-3" tabindex="-1"></a>S2 <span class="ot">&lt;-</span> <span class="fl">0.75</span></span>
+<span id="cb5-4"><a href="functions-for-survival-and-reproduction.html#cb5-4" tabindex="-1"></a>S3plus <span class="ot">&lt;-</span> <span class="fl">0.85</span></span>
+<span id="cb5-5"><a href="functions-for-survival-and-reproduction.html#cb5-5" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fl">1.1</span></span>
+<span id="cb5-6"><a href="functions-for-survival-and-reproduction.html#cb5-6" tabindex="-1"></a>deerLeslie <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,</span>
+<span id="cb5-7"><a href="functions-for-survival-and-reproduction.html#cb5-7" tabindex="-1"></a>                       S1, <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb5-8"><a href="functions-for-survival-and-reproduction.html#cb5-8" tabindex="-1"></a>                       <span class="dv">0</span>,S2,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb5-9"><a href="functions-for-survival-and-reproduction.html#cb5-9" tabindex="-1"></a>                       <span class="dv">0</span>,<span class="dv">0</span>,S3plus,S3plus), <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb5-10"><a href="functions-for-survival-and-reproduction.html#cb5-10" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">Re</span>(<span class="fu">eigen</span>(deerLeslie)<span class="sc">$</span>values))</span></code></pre></div>
+<pre><code>## [1] 1.024414</code></pre>
+<p>We assume that prey survival is lower the higher the predator population and juvenile prey is more strongly affected by the predator compared to adults.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="functions-for-survival-and-reproduction.html#cb7-1" tabindex="-1"></a><span class="co"># x = wolf population (normalised, 0-1), </span></span>
+<span id="cb7-2"><a href="functions-for-survival-and-reproduction.html#cb7-2" tabindex="-1"></a><span class="co"># propindiet = proportion of deer in wolf diet</span></span>
+<span id="cb7-3"><a href="functions-for-survival-and-reproduction.html#cb7-3" tabindex="-1"></a>FUNdeerS1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">propindiet=</span><span class="dv">1</span>) <span class="fu">plogis</span>(<span class="fu">qlogis</span>(<span class="fl">0.6</span>)<span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>x<span class="sc">*</span>propindiet)</span>
+<span id="cb7-4"><a href="functions-for-survival-and-reproduction.html#cb7-4" tabindex="-1"></a>FUNdeerS2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">propindiet=</span><span class="dv">1</span>) <span class="fu">plogis</span>(<span class="fu">qlogis</span>(<span class="fl">0.75</span>)<span class="sc">-</span><span class="fl">0.8</span><span class="sc">*</span>x<span class="sc">*</span>propindiet)</span>
+<span id="cb7-5"><a href="functions-for-survival-and-reproduction.html#cb7-5" tabindex="-1"></a>FUNdeerS3plus <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">propindiet=</span><span class="dv">1</span>) <span class="fu">plogis</span>(<span class="fu">qlogis</span>(<span class="fl">0.85</span>)<span class="sc">-</span><span class="fl">0.6</span><span class="sc">*</span>x<span class="sc">*</span>propindiet)</span>
+<span id="cb7-6"><a href="functions-for-survival-and-reproduction.html#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="functions-for-survival-and-reproduction.html#cb7-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">100</span>)  <span class="co"># 0 = no ungulates, 1 =maximum number of ungulates</span></span>
+<span id="cb7-8"><a href="functions-for-survival-and-reproduction.html#cb7-8" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">FUNdeerS1</span>(x)</span>
+<span id="cb7-9"><a href="functions-for-survival-and-reproduction.html#cb7-9" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">FUNdeerS2</span>(x) <span class="co"># first year survival</span></span>
+<span id="cb7-10"><a href="functions-for-survival-and-reproduction.html#cb7-10" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="fu">FUNdeerS3plus</span>(x)</span>
+<span id="cb7-11"><a href="functions-for-survival-and-reproduction.html#cb7-11" tabindex="-1"></a>  </span>
+<span id="cb7-12"><a href="functions-for-survival-and-reproduction.html#cb7-12" tabindex="-1"></a><span class="fu">plot</span>(x, y1, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;orange&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Wolf population&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Annual survival of the deer&quot;</span>,</span>
+<span id="cb7-13"><a href="functions-for-survival-and-reproduction.html#cb7-13" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-14"><a href="functions-for-survival-and-reproduction.html#cb7-14" tabindex="-1"></a><span class="fu">lines</span>(x, y2, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;orange3&quot;</span>)</span>
+<span id="cb7-15"><a href="functions-for-survival-and-reproduction.html#cb7-15" tabindex="-1"></a><span class="fu">lines</span>(x, y3, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;brown&quot;</span>)</span>
+<span id="cb7-16"><a href="functions-for-survival-and-reproduction.html#cb7-16" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="functions-for-survival-and-reproduction.html#cb7-17" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>, <span class="st">&quot;orange3&quot;</span>, <span class="st">&quot;brown&quot;</span>), <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;first year&quot;</span>, <span class="st">&quot;second year&quot;</span>, <span class="st">&quot;third year and older&quot;</span>))</span></code></pre></div>
+<p><img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="red-deer-reproduction" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Red deer reproduction<a href="functions-for-survival-and-reproduction.html#red-deer-reproduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We assume that a female deer has 0,1 or 2 young with probabilities 0.05, 0.85 and 0.1.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="functions-for-survival-and-reproduction.html#cb8-1" tabindex="-1"></a>FUNdeerncalves <span class="ot">&lt;-</span> <span class="cf">function</span>(nrfemales, npop, <span class="at">capacity=</span><span class="dv">2000</span>){</span>
+<span id="cb8-2"><a href="functions-for-survival-and-reproduction.html#cb8-2" tabindex="-1"></a>  nryoung <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.85</span>,<span class="fl">0.1</span>), <span class="at">size=</span>nrfemales, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-3"><a href="functions-for-survival-and-reproduction.html#cb8-3" tabindex="-1"></a> <span class="cf">if</span>(npop<span class="sc">&gt;</span>capacity) nryoung <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="dv">0</span>), <span class="at">size=</span>nrfemales, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-4"><a href="functions-for-survival-and-reproduction.html#cb8-4" tabindex="-1"></a> <span class="fu">return</span>(<span class="fu">sum</span>(nryoung))</span>
+<span id="cb8-5"><a href="functions-for-survival-and-reproduction.html#cb8-5" tabindex="-1"></a>  }</span></code></pre></div>
+</div>
+<div id="red-deer-proportions-inside-the-park" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Red deer proportions inside the park<a href="functions-for-survival-and-reproduction.html#red-deer-proportions-inside-the-park" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="functions-for-survival-and-reproduction.html#cb9-1" tabindex="-1"></a>FUNdeerpropSuIn <span class="ot">&lt;-</span> <span class="cf">function</span>(ndvi){</span>
+<span id="cb9-2"><a href="functions-for-survival-and-reproduction.html#cb9-2" tabindex="-1"></a>  <span class="co"># standardised ndvi (mean 0, sd 1)</span></span>
+<span id="cb9-3"><a href="functions-for-survival-and-reproduction.html#cb9-3" tabindex="-1"></a> <span class="fu">plogis</span>(<span class="fl">0.5</span><span class="sc">*</span>ndvi)</span>
+<span id="cb9-4"><a href="functions-for-survival-and-reproduction.html#cb9-4" tabindex="-1"></a>  }</span>
+<span id="cb9-5"><a href="functions-for-survival-and-reproduction.html#cb9-5" tabindex="-1"></a>FUNdeerpropHuIn <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb9-6"><a href="functions-for-survival-and-reproduction.html#cb9-6" tabindex="-1"></a>  <span class="co"># standardised ndvi (mean 0, sd 1)</span></span>
+<span id="cb9-7"><a href="functions-for-survival-and-reproduction.html#cb9-7" tabindex="-1"></a> <span class="fu">plogis</span>(<span class="fl">0.5</span><span class="sc">*</span>ndvi)</span>
+<span id="cb9-8"><a href="functions-for-survival-and-reproduction.html#cb9-8" tabindex="-1"></a>  }</span></code></pre></div>
+</div>
+<div id="chamois" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Chamois<a href="functions-for-survival-and-reproduction.html#chamois" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="chamois-survival" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Chamois survival<a href="functions-for-survival-and-reproduction.html#chamois-survival" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>survival of chamois depends on NDVI and red deer population. Survival may be low when deer population is high and NDVI is high, survival may be high when NDVI is high and deer population is low. When NDVI is low, chamois survival may not be affected. Maybe winter survival of chamois depends on summer condition.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="functions-for-survival-and-reproduction.html#cb10-1" tabindex="-1"></a><span class="co"># x = wolf population (normalised, 0-1), </span></span>
+<span id="cb10-2"><a href="functions-for-survival-and-reproduction.html#cb10-2" tabindex="-1"></a><span class="co"># propindiet = proportion of chamois in wolf diet</span></span>
+<span id="cb10-3"><a href="functions-for-survival-and-reproduction.html#cb10-3" tabindex="-1"></a>FUNchamoisS1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">propindiet=</span><span class="dv">1</span>) <span class="fu">plogis</span>(<span class="fu">qlogis</span>(S1)<span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>x<span class="sc">*</span>propindiet)</span>
+<span id="cb10-4"><a href="functions-for-survival-and-reproduction.html#cb10-4" tabindex="-1"></a>FUNchamoisS2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">propindiet=</span><span class="dv">1</span>) <span class="fu">plogis</span>(<span class="fu">qlogis</span>(S2)<span class="sc">-</span><span class="fl">0.8</span><span class="sc">*</span>x<span class="sc">*</span>propindiet)</span>
+<span id="cb10-5"><a href="functions-for-survival-and-reproduction.html#cb10-5" tabindex="-1"></a>FUNchamoisS3plus <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">propindiet=</span><span class="dv">1</span>) <span class="fu">plogis</span>(<span class="fu">qlogis</span>(S3plus)<span class="sc">-</span><span class="fl">0.6</span><span class="sc">*</span>x<span class="sc">*</span>propindiet)</span>
+<span id="cb10-6"><a href="functions-for-survival-and-reproduction.html#cb10-6" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="functions-for-survival-and-reproduction.html#cb10-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">100</span>)  <span class="co"># 0 = no ungulates, 1 =maximum number of ungulates</span></span>
+<span id="cb10-8"><a href="functions-for-survival-and-reproduction.html#cb10-8" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS1</span>(x)</span>
+<span id="cb10-9"><a href="functions-for-survival-and-reproduction.html#cb10-9" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS2</span>(x) <span class="co"># first year survival</span></span>
+<span id="cb10-10"><a href="functions-for-survival-and-reproduction.html#cb10-10" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS3plus</span>(x)</span>
+<span id="cb10-11"><a href="functions-for-survival-and-reproduction.html#cb10-11" tabindex="-1"></a>  </span>
+<span id="cb10-12"><a href="functions-for-survival-and-reproduction.html#cb10-12" tabindex="-1"></a><span class="fu">plot</span>(x, y1, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;orange&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Wolf population&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Annual survival of the chamois&quot;</span>,</span>
+<span id="cb10-13"><a href="functions-for-survival-and-reproduction.html#cb10-13" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb10-14"><a href="functions-for-survival-and-reproduction.html#cb10-14" tabindex="-1"></a><span class="fu">lines</span>(x, y2, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;orange3&quot;</span>)</span>
+<span id="cb10-15"><a href="functions-for-survival-and-reproduction.html#cb10-15" tabindex="-1"></a><span class="fu">lines</span>(x, y3, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;brown&quot;</span>)</span>
+<span id="cb10-16"><a href="functions-for-survival-and-reproduction.html#cb10-16" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="functions-for-survival-and-reproduction.html#cb10-17" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>, <span class="st">&quot;orange3&quot;</span>, <span class="st">&quot;brown&quot;</span>), <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;first year&quot;</span>, <span class="st">&quot;second year&quot;</span>, <span class="st">&quot;third year and older&quot;</span>))</span></code></pre></div>
+<p><img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="chamois-reproduction" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Chamois reproduction<a href="functions-for-survival-and-reproduction.html#chamois-reproduction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="functions-for-survival-and-reproduction.html#cb11-1" tabindex="-1"></a>FUNchamoisncalves <span class="ot">&lt;-</span> <span class="cf">function</span>(nrfemales, npop, <span class="at">capacity=</span><span class="dv">2000</span>){</span>
+<span id="cb11-2"><a href="functions-for-survival-and-reproduction.html#cb11-2" tabindex="-1"></a>  nryoung <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.8</span>,<span class="fl">0.1</span>,<span class="fl">0.05</span>), <span class="at">size=</span>nrfemales, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="functions-for-survival-and-reproduction.html#cb11-3" tabindex="-1"></a>  <span class="cf">if</span>(npop<span class="sc">&gt;</span>capacity) nryoung <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">size=</span>nrfemales, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-4"><a href="functions-for-survival-and-reproduction.html#cb11-4" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sum</span>(nryoung))</span>
+<span id="cb11-5"><a href="functions-for-survival-and-reproduction.html#cb11-5" tabindex="-1"></a>  }</span></code></pre></div>
+</div>
+</div>
+<div id="model" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Model<a href="functions-for-survival-and-reproduction.html#model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We pre-breeding population models.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="functions-for-survival-and-reproduction.html#cb12-1" tabindex="-1"></a>TT <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># number of years to run the model</span></span>
+<span id="cb12-2"><a href="functions-for-survival-and-reproduction.html#cb12-2" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">200</span> <span class="co"># number of simulations</span></span>
+<span id="cb12-3"><a href="functions-for-survival-and-reproduction.html#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="functions-for-survival-and-reproduction.html#cb12-4" tabindex="-1"></a>wolfN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-5"><a href="functions-for-survival-and-reproduction.html#cb12-5" tabindex="-1"></a>wolfN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-6"><a href="functions-for-survival-and-reproduction.html#cb12-6" tabindex="-1"></a>wolfN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-7"><a href="functions-for-survival-and-reproduction.html#cb12-7" tabindex="-1"></a>wolfN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-8"><a href="functions-for-survival-and-reproduction.html#cb12-8" tabindex="-1"></a>wolfP <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-9"><a href="functions-for-survival-and-reproduction.html#cb12-9" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="functions-for-survival-and-reproduction.html#cb12-10" tabindex="-1"></a>deerN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-11"><a href="functions-for-survival-and-reproduction.html#cb12-11" tabindex="-1"></a>deerN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-12"><a href="functions-for-survival-and-reproduction.html#cb12-12" tabindex="-1"></a>deerN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-13"><a href="functions-for-survival-and-reproduction.html#cb12-13" tabindex="-1"></a>deerN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-14"><a href="functions-for-survival-and-reproduction.html#cb12-14" tabindex="-1"></a>deerpropIn <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-15"><a href="functions-for-survival-and-reproduction.html#cb12-15" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="functions-for-survival-and-reproduction.html#cb12-16" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="functions-for-survival-and-reproduction.html#cb12-17" tabindex="-1"></a>chamoisN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-18"><a href="functions-for-survival-and-reproduction.html#cb12-18" tabindex="-1"></a>chamoisN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-19"><a href="functions-for-survival-and-reproduction.html#cb12-19" tabindex="-1"></a>chamoisN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-20"><a href="functions-for-survival-and-reproduction.html#cb12-20" tabindex="-1"></a>chamoisN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb12-21"><a href="functions-for-survival-and-reproduction.html#cb12-21" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="functions-for-survival-and-reproduction.html#cb12-22" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="functions-for-survival-and-reproduction.html#cb12-23" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim){</span>
+<span id="cb12-24"><a href="functions-for-survival-and-reproduction.html#cb12-24" tabindex="-1"></a>  wolfN1[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb12-25"><a href="functions-for-survival-and-reproduction.html#cb12-25" tabindex="-1"></a>  wolfN2[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb12-26"><a href="functions-for-survival-and-reproduction.html#cb12-26" tabindex="-1"></a>  wolfN3plus[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb12-27"><a href="functions-for-survival-and-reproduction.html#cb12-27" tabindex="-1"></a>  wolfN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> wolfN1[<span class="dv">1</span>,r] <span class="sc">+</span> wolfN2[<span class="dv">1</span>,r] <span class="sc">+</span>wolfN3plus[<span class="dv">1</span>,r]</span>
+<span id="cb12-28"><a href="functions-for-survival-and-reproduction.html#cb12-28" tabindex="-1"></a>  wolfP[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb12-29"><a href="functions-for-survival-and-reproduction.html#cb12-29" tabindex="-1"></a>  deerN1[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb12-30"><a href="functions-for-survival-and-reproduction.html#cb12-30" tabindex="-1"></a>  deerN2[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb12-31"><a href="functions-for-survival-and-reproduction.html#cb12-31" tabindex="-1"></a>  deerN3plus[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">750</span></span>
+<span id="cb12-32"><a href="functions-for-survival-and-reproduction.html#cb12-32" tabindex="-1"></a>  deerN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> deerN1[<span class="dv">1</span>,r] <span class="sc">+</span> deerN2[<span class="dv">1</span>,r] <span class="sc">+</span>deerN3plus[<span class="dv">1</span>,r]</span>
+<span id="cb12-33"><a href="functions-for-survival-and-reproduction.html#cb12-33" tabindex="-1"></a>  chamoisN1[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb12-34"><a href="functions-for-survival-and-reproduction.html#cb12-34" tabindex="-1"></a>  chamoisN2[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb12-35"><a href="functions-for-survival-and-reproduction.html#cb12-35" tabindex="-1"></a>  chamoisN3plus[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">600</span></span>
+<span id="cb12-36"><a href="functions-for-survival-and-reproduction.html#cb12-36" tabindex="-1"></a>  chamoisN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> chamoisN1[<span class="dv">1</span>,r] <span class="sc">+</span> chamoisN2[<span class="dv">1</span>,r] <span class="sc">+</span>chamoisN3plus[<span class="dv">1</span>,r]</span>
+<span id="cb12-37"><a href="functions-for-survival-and-reproduction.html#cb12-37" tabindex="-1"></a>  </span>
+<span id="cb12-38"><a href="functions-for-survival-and-reproduction.html#cb12-38" tabindex="-1"></a>  </span>
+<span id="cb12-39"><a href="functions-for-survival-and-reproduction.html#cb12-39" tabindex="-1"></a>  <span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>TT){</span>
+<span id="cb12-40"><a href="functions-for-survival-and-reproduction.html#cb12-40" tabindex="-1"></a>    </span>
+<span id="cb12-41"><a href="functions-for-survival-and-reproduction.html#cb12-41" tabindex="-1"></a>  <span class="co"># Wolf </span></span>
+<span id="cb12-42"><a href="functions-for-survival-and-reproduction.html#cb12-42" tabindex="-1"></a>  wolfnrepfemales <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">c</span>(wolfN3plus[t<span class="dv">-1</span>,r]<span class="sc">/</span><span class="dv">2</span>, wolfP[t<span class="dv">-1</span>,r]<span class="sc">*</span><span class="dv">2</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="co"># number of reproducing females</span></span>
+<span id="cb12-43"><a href="functions-for-survival-and-reproduction.html#cb12-43" tabindex="-1"></a>  wolfnpups <span class="ot">&lt;-</span> <span class="fu">FUNwolfnpups</span>(wolfnrepfemales) </span>
+<span id="cb12-44"><a href="functions-for-survival-and-reproduction.html#cb12-44" tabindex="-1"></a>  wolfS1 <span class="ot">&lt;-</span> <span class="fu">FUNwolfS1</span>((deerN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN[t<span class="dv">-1</span>,r])<span class="sc">/</span>ungulatesmaxN)</span>
+<span id="cb12-45"><a href="functions-for-survival-and-reproduction.html#cb12-45" tabindex="-1"></a>  wolfS2 <span class="ot">&lt;-</span> <span class="fu">FUNwolfS2</span>((deerN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN[t<span class="dv">-1</span>,r])<span class="sc">/</span>ungulatesmaxN)</span>
+<span id="cb12-46"><a href="functions-for-survival-and-reproduction.html#cb12-46" tabindex="-1"></a>  wolfS3plus <span class="ot">&lt;-</span> <span class="fu">FUNwolfS3plus</span>((deerN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN[t<span class="dv">-1</span>,r])<span class="sc">/</span>ungulatesmaxN)</span>
+<span id="cb12-47"><a href="functions-for-survival-and-reproduction.html#cb12-47" tabindex="-1"></a>  </span>
+<span id="cb12-48"><a href="functions-for-survival-and-reproduction.html#cb12-48" tabindex="-1"></a>  wolfN1[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>wolfnpups, <span class="at">prob=</span>wolfS1)</span>
+<span id="cb12-49"><a href="functions-for-survival-and-reproduction.html#cb12-49" tabindex="-1"></a>  wolfN2[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>wolfN1[t<span class="dv">-1</span>,r], <span class="at">prob=</span>wolfS2)</span>
+<span id="cb12-50"><a href="functions-for-survival-and-reproduction.html#cb12-50" tabindex="-1"></a>  wolfN3plus[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>wolfN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>wolfN3plus[t<span class="dv">-1</span>,r], <span class="at">prob=</span>wolfS3plus)</span>
+<span id="cb12-51"><a href="functions-for-survival-and-reproduction.html#cb12-51" tabindex="-1"></a>  wolfN[t, r] <span class="ot">&lt;-</span> wolfN1[t,r] <span class="sc">+</span> wolfN2[t,r] <span class="sc">+</span>wolfN3plus[t,r]</span>
+<span id="cb12-52"><a href="functions-for-survival-and-reproduction.html#cb12-52" tabindex="-1"></a>  </span>
+<span id="cb12-53"><a href="functions-for-survival-and-reproduction.html#cb12-53" tabindex="-1"></a>  </span>
+<span id="cb12-54"><a href="functions-for-survival-and-reproduction.html#cb12-54" tabindex="-1"></a>  <span class="co"># Red deer</span></span>
+<span id="cb12-55"><a href="functions-for-survival-and-reproduction.html#cb12-55" tabindex="-1"></a>  deernrepfemales <span class="ot">&lt;-</span> <span class="fu">round</span>((deerN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>deerN3plus[t<span class="dv">-1</span>,r])<span class="sc">/</span><span class="dv">2</span>) <span class="co"># number of reproducing females</span></span>
+<span id="cb12-56"><a href="functions-for-survival-and-reproduction.html#cb12-56" tabindex="-1"></a>  deerncalves <span class="ot">&lt;-</span> <span class="fu">FUNdeerncalves</span>(deernrepfemales, <span class="at">npop=</span>deerN[t<span class="dv">-1</span>,r])</span>
+<span id="cb12-57"><a href="functions-for-survival-and-reproduction.html#cb12-57" tabindex="-1"></a>  propdeerindiet <span class="ot">&lt;-</span> deerN[t<span class="dv">-1</span>,r]<span class="sc">/</span>(deerN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN[t<span class="dv">-1</span>,r])</span>
+<span id="cb12-58"><a href="functions-for-survival-and-reproduction.html#cb12-58" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(propdeerindiet)) propdeerindiet <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb12-59"><a href="functions-for-survival-and-reproduction.html#cb12-59" tabindex="-1"></a>  deerS1 <span class="ot">&lt;-</span> <span class="fu">FUNdeerS1</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerindiet)</span>
+<span id="cb12-60"><a href="functions-for-survival-and-reproduction.html#cb12-60" tabindex="-1"></a>  deerS2 <span class="ot">&lt;-</span> <span class="fu">FUNdeerS2</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerindiet)</span>
+<span id="cb12-61"><a href="functions-for-survival-and-reproduction.html#cb12-61" tabindex="-1"></a>  deerS3plus <span class="ot">&lt;-</span> <span class="fu">FUNdeerS3plus</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerindiet)</span>
+<span id="cb12-62"><a href="functions-for-survival-and-reproduction.html#cb12-62" tabindex="-1"></a>  </span>
+<span id="cb12-63"><a href="functions-for-survival-and-reproduction.html#cb12-63" tabindex="-1"></a>  deerN1[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerncalves, <span class="at">prob=</span>deerS1)</span>
+<span id="cb12-64"><a href="functions-for-survival-and-reproduction.html#cb12-64" tabindex="-1"></a>  deerN2[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerN1[t<span class="dv">-1</span>,r], <span class="at">prob=</span>deerS2)</span>
+<span id="cb12-65"><a href="functions-for-survival-and-reproduction.html#cb12-65" tabindex="-1"></a>  deerN3plus[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>deerN3plus[t<span class="dv">-1</span>,r], <span class="at">prob=</span>deerS3plus)</span>
+<span id="cb12-66"><a href="functions-for-survival-and-reproduction.html#cb12-66" tabindex="-1"></a>  deerN[t, r] <span class="ot">&lt;-</span> deerN1[t,r] <span class="sc">+</span> deerN2[t,r] <span class="sc">+</span>deerN3plus[t,r]</span>
+<span id="cb12-67"><a href="functions-for-survival-and-reproduction.html#cb12-67" tabindex="-1"></a>  </span>
+<span id="cb12-68"><a href="functions-for-survival-and-reproduction.html#cb12-68" tabindex="-1"></a>  <span class="co"># Chamois</span></span>
+<span id="cb12-69"><a href="functions-for-survival-and-reproduction.html#cb12-69" tabindex="-1"></a>  chamoisnrepfemales <span class="ot">&lt;-</span> <span class="fu">round</span>((chamoisN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN3plus[t<span class="dv">-1</span>,r])<span class="sc">/</span><span class="dv">2</span>) <span class="co"># number of reproducing females</span></span>
+<span id="cb12-70"><a href="functions-for-survival-and-reproduction.html#cb12-70" tabindex="-1"></a>  chamoisncalves <span class="ot">&lt;-</span> <span class="fu">FUNchamoisncalves</span>(chamoisnrepfemales, <span class="at">npop=</span>chamoisN[t<span class="dv">-1</span>,r])</span>
+<span id="cb12-71"><a href="functions-for-survival-and-reproduction.html#cb12-71" tabindex="-1"></a>  propchamoisindiet <span class="ot">&lt;-</span> chamoisN[t<span class="dv">-1</span>,r]<span class="sc">/</span>(deerN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN[t<span class="dv">-1</span>,r])</span>
+<span id="cb12-72"><a href="functions-for-survival-and-reproduction.html#cb12-72" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(propchamoisindiet)) propchamoisindiet <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb12-73"><a href="functions-for-survival-and-reproduction.html#cb12-73" tabindex="-1"></a>  chamoisS1 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS1</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisindiet)</span>
+<span id="cb12-74"><a href="functions-for-survival-and-reproduction.html#cb12-74" tabindex="-1"></a>  chamoisS2 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS2</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisindiet)</span>
+<span id="cb12-75"><a href="functions-for-survival-and-reproduction.html#cb12-75" tabindex="-1"></a>  chamoisS3plus <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS3plus</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisindiet)</span>
+<span id="cb12-76"><a href="functions-for-survival-and-reproduction.html#cb12-76" tabindex="-1"></a>  </span>
+<span id="cb12-77"><a href="functions-for-survival-and-reproduction.html#cb12-77" tabindex="-1"></a>  chamoisN1[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisncalves, <span class="at">prob=</span>chamoisS1)</span>
+<span id="cb12-78"><a href="functions-for-survival-and-reproduction.html#cb12-78" tabindex="-1"></a>  chamoisN2[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisN1[t<span class="dv">-1</span>,r], <span class="at">prob=</span>chamoisS2)</span>
+<span id="cb12-79"><a href="functions-for-survival-and-reproduction.html#cb12-79" tabindex="-1"></a>  chamoisN3plus[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN3plus[t<span class="dv">-1</span>,r], <span class="at">prob=</span>chamoisS3plus)</span>
+<span id="cb12-80"><a href="functions-for-survival-and-reproduction.html#cb12-80" tabindex="-1"></a>  chamoisN[t, r] <span class="ot">&lt;-</span> chamoisN1[t,r] <span class="sc">+</span> chamoisN2[t,r] <span class="sc">+</span>chamoisN3plus[t,r]</span>
+<span id="cb12-81"><a href="functions-for-survival-and-reproduction.html#cb12-81" tabindex="-1"></a></span>
+<span id="cb12-82"><a href="functions-for-survival-and-reproduction.html#cb12-82" tabindex="-1"></a>  } <span class="co"># close t</span></span>
+<span id="cb12-83"><a href="functions-for-survival-and-reproduction.html#cb12-83" tabindex="-1"></a>} <span class="co"># close r</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="functions-for-survival-and-reproduction.html#cb13-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="fl">0.1</span>,<span class="dv">1</span>), <span class="at">oma=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb13-2"><a href="functions-for-survival-and-reproduction.html#cb13-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(wolfN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="cn">NA</span>, <span class="at">ylab=</span><span class="st">&quot;Wolf population&quot;</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb13-3"><a href="functions-for-survival-and-reproduction.html#cb13-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, wolfN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span>
+<span id="cb13-4"><a href="functions-for-survival-and-reproduction.html#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="functions-for-survival-and-reproduction.html#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="functions-for-survival-and-reproduction.html#cb13-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(deerN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Deer population&quot;</span>)</span>
+<span id="cb13-7"><a href="functions-for-survival-and-reproduction.html#cb13-7" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, deerN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>), <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb13-8"><a href="functions-for-survival-and-reproduction.html#cb13-8" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="functions-for-survival-and-reproduction.html#cb13-9" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="functions-for-survival-and-reproduction.html#cb13-10" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Chamois population&quot;</span>)</span>
+<span id="cb13-11"><a href="functions-for-survival-and-reproduction.html#cb13-11" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, chamoisN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="terminology.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["multi-species_model_SNP-region.pdf", "multi-species_model_SNP-region.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
