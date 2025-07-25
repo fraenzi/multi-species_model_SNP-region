@@ -178,7 +178,7 @@ plot(x, FUNdeerpropSuIn(x), type="l", lwd=2, col="darkgreen", ylim=c(0,1),
 *open questions: what are plausible effect sizes? what proportion of deer from the outside population move inside during hunting?*  
 
 
-###survival
+### Red deer survival
 
 Males live up to 17 years, females up to 20 years [@schweizerische_gesellschaft_fur_wildtierbiologie_sgw_atlas_2021].  
 *todo: separate population models for males and females*

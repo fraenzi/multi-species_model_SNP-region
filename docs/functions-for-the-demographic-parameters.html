@@ -181,7 +181,8 @@ div.csl-indent {
 <li class="chapter" data-level="5.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer"><i class="fa fa-check"></i><b>5.2</b> Red deer</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#proportion-of-the-population-from-outside-that-is-inside-the-park"><i class="fa fa-check"></i><b>5.2.1</b> Proportion of the population from outside that is inside the park</a></li>
-<li class="chapter" data-level="5.2.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer-reproduction"><i class="fa fa-check"></i><b>5.2.2</b> Red deer reproduction</a></li>
+<li class="chapter" data-level="5.2.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer-survival"><i class="fa fa-check"></i><b>5.2.2</b> Red deer survival</a></li>
+<li class="chapter" data-level="5.2.3" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer-reproduction"><i class="fa fa-check"></i><b>5.2.3</b> Red deer reproduction</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#chamois"><i class="fa fa-check"></i><b>5.3</b> Chamois</a>
 <ul>
@@ -282,7 +283,9 @@ Also, for reproduction, deer move into the park depending on the how green the a
 <span id="cb7-15"><a href="functions-for-the-demographic-parameters.html#cb7-15" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;NDVI of alpine meadows (z-transformed)&quot;</span>, <span class="at">las=</span><span class="dv">1</span>, <span class="at">ylab=</span><span class="st">&quot;Proportion of deer inside or above the treeline? during spring/summer&quot;</span>)</span></code></pre></div>
 <p><img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p><em>open questions: what are plausible effect sizes? what proportion of deer from the outside population move inside during hunting?</em></p>
-<p>###survival</p>
+</div>
+<div id="red-deer-survival" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Red deer survival<a href="functions-for-the-demographic-parameters.html#red-deer-survival" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Males live up to 17 years, females up to 20 years <span class="citation">(<a href="#ref-schweizerische_gesellschaft_fur_wildtierbiologie_sgw_atlas_2021">Wildtierbiologie SGW 2021</a>)</span>.<br />
 <em>todo: separate population models for males and females</em></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="functions-for-the-demographic-parameters.html#cb8-1" tabindex="-1"></a><span class="co"># expected population growth rate; trying out demographic parameters that produce plausible growth </span></span>
@@ -330,8 +333,8 @@ Also, for reproduction, deer move into the park depending on the how green the a
 <span id="cb10-31"><a href="functions-for-the-demographic-parameters.html#cb10-31" tabindex="-1"></a><span class="fu">lines</span>(x, y3, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;brown&quot;</span>)</span></code></pre></div>
 <p><img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
-<div id="red-deer-reproduction" class="section level3 hasAnchor" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Red deer reproduction<a href="functions-for-the-demographic-parameters.html#red-deer-reproduction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="red-deer-reproduction" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Red deer reproduction<a href="functions-for-the-demographic-parameters.html#red-deer-reproduction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We assume that a female deer has 0,1 or 2 young with probabilities 0.05, 0.85 and 0.1.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="functions-for-the-demographic-parameters.html#cb11-1" tabindex="-1"></a>FUNdeerncalves <span class="ot">&lt;-</span> <span class="cf">function</span>(nrfemales, npop, <span class="at">capacity=</span><span class="dv">2000</span>){</span>
 <span id="cb11-2"><a href="functions-for-the-demographic-parameters.html#cb11-2" tabindex="-1"></a>  nryoung <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.85</span>,<span class="fl">0.1</span>), <span class="at">size=</span>nrfemales, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>

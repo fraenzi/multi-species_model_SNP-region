@@ -10,6 +10,7 @@ reproduction
 carrying-capacity
 red-deer
 proportion-of-the-population-from-outside-that-is-inside-the-park
+red-deer-survival
 red-deer-reproduction
 chamois
 chamois-survival
