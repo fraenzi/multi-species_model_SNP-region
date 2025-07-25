@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Terminology | Tryout of the system model</title>
+  <title>4 Environmental variables | Tryout of the system model</title>
   <meta name="description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Terminology | Tryout of the system model" />
+  <meta property="og:title" content="4 Environmental variables | Tryout of the system model" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/titlepicture.jpg" />
   <meta property="og:description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
   <meta name="github-repo" content="fraenzi/multi-species_model_SNP-region" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Terminology | Tryout of the system model" />
+  <meta name="twitter:title" content="4 Environmental variables | Tryout of the system model" />
   
   <meta name="twitter:description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
   <meta name="twitter:image" content="/figures/titlepicture.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction.html"/>
-<link rel="next" href="environmental-variables.html"/>
+<link rel="prev" href="terminology.html"/>
+<link rel="next" href="functions-for-the-demographic-parameters.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -206,141 +206,12 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="terminology" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> Terminology<a href="terminology.html#terminology" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>We adopt the following logic for parameter names:<br />
-1. species<br />
-2. area (A = In for within the park, Out for outside the park)
-3. parameter name (survival, reproduction etc.)<br />
-4. age index (1 = first year (birth to one year after birth), 2 second year, … , 2+ or 2plus includes the second and all following years)<br />
-5. time (year)</p>
-<p>We follow the terminology given in <span class="citation">Thomson et al. (<a href="#ref-Thomson.2009d">2009</a>)</span> for survival parameters: <span class="math inline">\(S\)</span> for true survival, <span class="math inline">\(\phi\)</span> for apparent survival, i.e. the product of site fidelity and survival.</p>
-<p>TOD: indices t für alle Parameter einfügen.</p>
-<ul>
-<li>Populationen in und out separat!</li>
-</ul>
-<table>
-<colgroup>
-<col width="40%" />
-<col width="33%" />
-<col width="26%" />
-</colgroup>
-<thead>
-<tr>
-<th>in text</th>
-<th>in code</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="math inline">\(^{wolfA}S_{1,t}\)</span></td>
-<td><code>wolfInS1</code>, <code>wolfOutS1</code></td>
-<td>annual survival of a wolf from birth to first summer</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{wolfA}S_{2,t}\)</span></td>
-<td><code>wolfInS2</code>, <code>wolfOutS2</code></td>
-<td>annual survival of a wolf from first to second summer</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{wolfA}S_{3+,t}\)</span></td>
-<td><code>wolfInS3plus</code>, <code>wolfOutS3plus</code></td>
-<td>annual survival of a wolf from second summer onward</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{wolfA}f_t\)</span></td>
-<td><code>wolfInf</code>, <code>wolfOutf</code></td>
-<td>average number of puppies produced per female in one year</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{wolfA}N_{1,t}\)</span></td>
-<td><code>wolfInN1</code>,<code>wolfOutfN1</code></td>
-<td>number of first year wolves just before reproduction inside or outside of the park</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{wolfA}N_{2,t}\)</span></td>
-<td><code>wolfInN2</code>, <code>wolfOutN2</code></td>
-<td>number of second year wolves just before reproduction inside or outside of the park</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{wolfA}N_{3+,t}\)</span></td>
-<td><code>wolfInN3plus</code>, <code>wolfOutN3plus</code></td>
-<td>number of older wolves just before reproduction inside or outside of the park</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{wolfA}P_t\)</span></td>
-<td><code>wolfInP</code>, <code>wolfOutP</code></td>
-<td>number of wolf packs inside or outside of the park</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{wolfA}F_t\)</span></td>
-<td><code>wolfInFplus</code>, <code>wolfOutFplus</code></td>
-<td>number of reproducing female wolves inside or outside of the park</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{deerA}N_1\)</span></td>
-<td><code>deerInN1</code>, <code>deerOutN1</code></td>
-<td>number of yearlings of deer inside and outside of the park</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{deerA}N_2\)</span></td>
-<td><code>deerInN2</code>, <code>deerOutN2</code></td>
-<td>number of second year individuals of deer inside and outside of the park</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{deerA}N_3\)</span></td>
-<td><code>deerInN3</code>, <code>deerOutN3</code></td>
-<td>number of third year and older individuals of deer inside and outside of the park</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{deerA}S_1\)</span></td>
-<td><code>deerInS1</code>, <code>deerOutS1</code></td>
-<td>survival of a deer from birth to first summer</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{deerA}S_2\)</span></td>
-<td><code>deerInS2</code>, <code>deerOutS2</code></td>
-<td>survival of a deer from first to second summer</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{deerA}S_{3+}\)</span></td>
-<td><code>deerInS3plus</code>, <code>deerOutS3plus</code></td>
-<td>survival of a deer from second summer onward</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{deerA}f\)</span></td>
-<td><code>deerInf</code>, <code>deerOutf</code></td>
-<td>average number of young produced per female in one year</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{chamoisA}S_1\)</span></td>
-<td><code>chamoisInS1</code>, <code>chamoisOutS1</code></td>
-<td>survival of a chamois from birth to first summer</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{chamoisA}S_2\)</span></td>
-<td><code>chamoisInS2</code>, <code>chamoisOutS2</code></td>
-<td>survival of a chamois from first to second summer</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{chamoisA}S_{3+}\)</span></td>
-<td><code>chamoisInS3plus</code>, <code>chamoisOutS3plus</code></td>
-<td>survival of a chamois from second summer onward</td>
-</tr>
-<tr>
-<td><span class="math inline">\(^{chamoisA}f\)</span></td>
-<td><code>chamoisInf</code>, <code>chamoisOutf</code></td>
-<td>average number of young produced per female in one year</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="terminology.html#cb1-1" tabindex="-1"></a>TT <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># number of years to run the model</span></span></code></pre></div>
-</div>
-<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-Thomson.2009d" class="csl-entry">
-Thomson, D L, M J Conroy, D R Anderson, K P Burnham, E G Cooch, C M Francis, J.-D. Lebreton, et al. 2009. <span>“Standardising Terminology and Notation for the Analysis of Demographic Processes in Marked Populations.”</span> In <em>Modeling Demographic Processes in Marked Populations</em>, edited by D L Thomson, E G Cooch, and M J Conroy, 1099–1106. Berlin: Springer.
+<div id="environmental-variables" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Environmental variables<a href="environmental-variables.html#environmental-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ndvi-of-alpine-meadows" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> NDVI of alpine meadows<a href="environmental-variables.html#ndvi-of-alpine-meadows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><em>todo: match z-value to a real value, include effects of grazers on the NDVI</em></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="environmental-variables.html#cb2-1" tabindex="-1"></a>envNDVI <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(TT)</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -348,8 +219,8 @@ Thomson, D L, M J Conroy, D R Anderson, K P Burnham, E G Cooch, C M Francis, J.-
           </div>
         </div>
       </div>
-<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="environmental-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="terminology.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functions-for-the-demographic-parameters.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
