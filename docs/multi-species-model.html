@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Multi-species model | Tryout of the system model</title>
+  <meta name="description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Multi-species model | Tryout of the system model" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/figures/titlepicture.jpg" />
+  <meta property="og:description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
+  <meta name="github-repo" content="fraenzi/multi-species_model_SNP-region" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Multi-species model | Tryout of the system model" />
+  
+  <meta name="twitter:description" content="The multi-species model aims at representing mathematically the ecosystem in the SNP-region." />
+  <meta name="twitter:image" content="/figures/titlepicture.jpg" />
+
+<meta name="author" content="Fränzi Korner-Nievergelt" />
+
+
+<meta name="date" content="2025-07-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="functions-for-the-demographic-parameters.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>3</b> Terminology</a></li>
+<li class="chapter" data-level="4" data-path="environmental-variables.html"><a href="environmental-variables.html"><i class="fa fa-check"></i><b>4</b> Environmental variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="environmental-variables.html"><a href="environmental-variables.html#ndvi-of-alpine-meadows"><i class="fa fa-check"></i><b>4.1</b> NDVI of alpine meadows</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html"><i class="fa fa-check"></i><b>5</b> Functions for the demographic parameters</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#wolf"><i class="fa fa-check"></i><b>5.1</b> Wolf</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#survival"><i class="fa fa-check"></i><b>5.1.1</b> Survival</a></li>
+<li class="chapter" data-level="5.1.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#reproduction"><i class="fa fa-check"></i><b>5.1.2</b> Reproduction</a></li>
+<li class="chapter" data-level="5.1.3" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#carrying-capacity"><i class="fa fa-check"></i><b>5.1.3</b> Carrying capacity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer"><i class="fa fa-check"></i><b>5.2</b> Red deer</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#proportion-of-the-population-from-outside-that-is-inside-the-park"><i class="fa fa-check"></i><b>5.2.1</b> Proportion of the population from outside that is inside the park</a></li>
+<li class="chapter" data-level="5.2.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer-reproduction"><i class="fa fa-check"></i><b>5.2.2</b> Red deer reproduction</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#chamois"><i class="fa fa-check"></i><b>5.3</b> Chamois</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#chamois-survival"><i class="fa fa-check"></i><b>5.3.1</b> Chamois survival</a></li>
+<li class="chapter" data-level="5.3.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#chamois-reproduction"><i class="fa fa-check"></i><b>5.3.2</b> Chamois reproduction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multi-species-model.html"><a href="multi-species-model.html"><i class="fa fa-check"></i><b>6</b> Multi-species model</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="multi-species-model.html"><a href="multi-species-model.html#model-runs"><i class="fa fa-check"></i><b>6.1</b> Model runs</a></li>
+<li class="chapter" data-level="6.2" data-path="multi-species-model.html"><a href="multi-species-model.html#results"><i class="fa fa-check"></i><b>6.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tryout of the system model</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multi-species-model" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Multi-species model<a href="multi-species-model.html#multi-species-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="model-runs" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Model runs<a href="multi-species-model.html#model-runs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We build pre-breeding population models.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="multi-species-model.html#cb16-1" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">200</span> <span class="co"># number of simulations</span></span>
+<span id="cb16-2"><a href="multi-species-model.html#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="multi-species-model.html#cb16-3" tabindex="-1"></a>wolfN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-4"><a href="multi-species-model.html#cb16-4" tabindex="-1"></a>wolfN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-5"><a href="multi-species-model.html#cb16-5" tabindex="-1"></a>wolfN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-6"><a href="multi-species-model.html#cb16-6" tabindex="-1"></a>wolfN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-7"><a href="multi-species-model.html#cb16-7" tabindex="-1"></a>wolfP <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-8"><a href="multi-species-model.html#cb16-8" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="multi-species-model.html#cb16-9" tabindex="-1"></a>deerInN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-10"><a href="multi-species-model.html#cb16-10" tabindex="-1"></a>deerInN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-11"><a href="multi-species-model.html#cb16-11" tabindex="-1"></a>deerInN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-12"><a href="multi-species-model.html#cb16-12" tabindex="-1"></a>deerOutN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-13"><a href="multi-species-model.html#cb16-13" tabindex="-1"></a>deerOutN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-14"><a href="multi-species-model.html#cb16-14" tabindex="-1"></a>deerOutN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-15"><a href="multi-species-model.html#cb16-15" tabindex="-1"></a>deerInN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-16"><a href="multi-species-model.html#cb16-16" tabindex="-1"></a>deerOutN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-17"><a href="multi-species-model.html#cb16-17" tabindex="-1"></a>deerN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-18"><a href="multi-species-model.html#cb16-18" tabindex="-1"></a>deerpropIn <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim) <span class="co"># proportion of deer from outside that move into the SNP during hunting</span></span>
+<span id="cb16-19"><a href="multi-species-model.html#cb16-19" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="multi-species-model.html#cb16-20" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="multi-species-model.html#cb16-21" tabindex="-1"></a>chamoisInN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-22"><a href="multi-species-model.html#cb16-22" tabindex="-1"></a>chamoisInN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-23"><a href="multi-species-model.html#cb16-23" tabindex="-1"></a>chamoisInN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-24"><a href="multi-species-model.html#cb16-24" tabindex="-1"></a>chamoisInN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-25"><a href="multi-species-model.html#cb16-25" tabindex="-1"></a>chamoisOutN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-26"><a href="multi-species-model.html#cb16-26" tabindex="-1"></a>chamoisOutN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-27"><a href="multi-species-model.html#cb16-27" tabindex="-1"></a>chamoisOutN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-28"><a href="multi-species-model.html#cb16-28" tabindex="-1"></a>chamoisOutN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-29"><a href="multi-species-model.html#cb16-29" tabindex="-1"></a>chamoisN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
+<span id="cb16-30"><a href="multi-species-model.html#cb16-30" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="multi-species-model.html#cb16-31" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="multi-species-model.html#cb16-32" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim){</span>
+<span id="cb16-33"><a href="multi-species-model.html#cb16-33" tabindex="-1"></a><span class="co"># starting populations</span></span>
+<span id="cb16-34"><a href="multi-species-model.html#cb16-34" tabindex="-1"></a>  wolfN1[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb16-35"><a href="multi-species-model.html#cb16-35" tabindex="-1"></a>  wolfN2[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb16-36"><a href="multi-species-model.html#cb16-36" tabindex="-1"></a>  wolfN3plus[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb16-37"><a href="multi-species-model.html#cb16-37" tabindex="-1"></a>  wolfN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> wolfN1[<span class="dv">1</span>,r] <span class="sc">+</span> wolfN2[<span class="dv">1</span>,r] <span class="sc">+</span>wolfN3plus[<span class="dv">1</span>,r]</span>
+<span id="cb16-38"><a href="multi-species-model.html#cb16-38" tabindex="-1"></a>  wolfP[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb16-39"><a href="multi-species-model.html#cb16-39" tabindex="-1"></a>  deerInN1[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb16-40"><a href="multi-species-model.html#cb16-40" tabindex="-1"></a>  deerInN2[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb16-41"><a href="multi-species-model.html#cb16-41" tabindex="-1"></a>  deerInN3plus[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb16-42"><a href="multi-species-model.html#cb16-42" tabindex="-1"></a>  deerInN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> deerInN1[<span class="dv">1</span>,r] <span class="sc">+</span> deerInN2[<span class="dv">1</span>,r] <span class="sc">+</span>deerInN3plus[<span class="dv">1</span>,r]</span>
+<span id="cb16-43"><a href="multi-species-model.html#cb16-43" tabindex="-1"></a>  </span>
+<span id="cb16-44"><a href="multi-species-model.html#cb16-44" tabindex="-1"></a>  deerOutN1[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb16-45"><a href="multi-species-model.html#cb16-45" tabindex="-1"></a>  deerOutN2[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb16-46"><a href="multi-species-model.html#cb16-46" tabindex="-1"></a>  deerOutN3plus[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">1500</span></span>
+<span id="cb16-47"><a href="multi-species-model.html#cb16-47" tabindex="-1"></a>  deerOutN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> deerOutN1[<span class="dv">1</span>,r] <span class="sc">+</span> deerOutN2[<span class="dv">1</span>,r] <span class="sc">+</span>deerOutN3plus[<span class="dv">1</span>,r]</span>
+<span id="cb16-48"><a href="multi-species-model.html#cb16-48" tabindex="-1"></a>  deerN[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> deerInN[<span class="dv">1</span>,r] <span class="sc">+</span> deerOutN[<span class="dv">1</span>,r]</span>
+<span id="cb16-49"><a href="multi-species-model.html#cb16-49" tabindex="-1"></a>  </span>
+<span id="cb16-50"><a href="multi-species-model.html#cb16-50" tabindex="-1"></a>  chamoisInN1[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb16-51"><a href="multi-species-model.html#cb16-51" tabindex="-1"></a>  chamoisInN2[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb16-52"><a href="multi-species-model.html#cb16-52" tabindex="-1"></a>  chamoisInN3plus[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">600</span></span>
+<span id="cb16-53"><a href="multi-species-model.html#cb16-53" tabindex="-1"></a>  chamoisInN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> chamoisInN1[<span class="dv">1</span>,r] <span class="sc">+</span> chamoisInN2[<span class="dv">1</span>,r] <span class="sc">+</span>chamoisInN3plus[<span class="dv">1</span>,r]</span>
+<span id="cb16-54"><a href="multi-species-model.html#cb16-54" tabindex="-1"></a>  chamoisOutN1[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">400</span></span>
+<span id="cb16-55"><a href="multi-species-model.html#cb16-55" tabindex="-1"></a>  chamoisOutN2[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb16-56"><a href="multi-species-model.html#cb16-56" tabindex="-1"></a>  chamoisOutN3plus[<span class="dv">1</span>,r] <span class="ot">&lt;-</span> <span class="dv">2400</span></span>
+<span id="cb16-57"><a href="multi-species-model.html#cb16-57" tabindex="-1"></a>  chamoisOutN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> chamoisOutN1[<span class="dv">1</span>,r] <span class="sc">+</span> chamoisOutN2[<span class="dv">1</span>,r] <span class="sc">+</span>chamoisOutN3plus[<span class="dv">1</span>,r]</span>
+<span id="cb16-58"><a href="multi-species-model.html#cb16-58" tabindex="-1"></a>  chamoisN[<span class="dv">1</span>, r] <span class="ot">&lt;-</span> chamoisInN[<span class="dv">1</span>,r] <span class="sc">+</span> chamoisOutN[<span class="dv">1</span>,r]</span>
+<span id="cb16-59"><a href="multi-species-model.html#cb16-59" tabindex="-1"></a>  </span>
+<span id="cb16-60"><a href="multi-species-model.html#cb16-60" tabindex="-1"></a>  </span>
+<span id="cb16-61"><a href="multi-species-model.html#cb16-61" tabindex="-1"></a>  <span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>TT){</span>
+<span id="cb16-62"><a href="multi-species-model.html#cb16-62" tabindex="-1"></a>    </span>
+<span id="cb16-63"><a href="multi-species-model.html#cb16-63" tabindex="-1"></a>  <span class="co"># Wolf </span></span>
+<span id="cb16-64"><a href="multi-species-model.html#cb16-64" tabindex="-1"></a>  wolfnrepfemales <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">c</span>(wolfN3plus[t<span class="dv">-1</span>,r]<span class="sc">/</span><span class="dv">2</span>, wolfP[t<span class="dv">-1</span>,r]<span class="sc">*</span><span class="dv">2</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="co"># number of reproducing females</span></span>
+<span id="cb16-65"><a href="multi-species-model.html#cb16-65" tabindex="-1"></a>  wolfnpups <span class="ot">&lt;-</span> <span class="fu">FUNwolfnpups</span>(wolfnrepfemales) </span>
+<span id="cb16-66"><a href="multi-species-model.html#cb16-66" tabindex="-1"></a>  wolfS1 <span class="ot">&lt;-</span> <span class="fu">FUNwolfS1</span>((deerN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN[t<span class="dv">-1</span>,r])<span class="sc">/</span>ungulatesmaxN)</span>
+<span id="cb16-67"><a href="multi-species-model.html#cb16-67" tabindex="-1"></a>  wolfS2 <span class="ot">&lt;-</span> <span class="fu">FUNwolfS2</span>((deerN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN[t<span class="dv">-1</span>,r])<span class="sc">/</span>ungulatesmaxN)</span>
+<span id="cb16-68"><a href="multi-species-model.html#cb16-68" tabindex="-1"></a>  wolfS3plus <span class="ot">&lt;-</span> <span class="fu">FUNwolfS3plus</span>((deerN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisN[t<span class="dv">-1</span>,r])<span class="sc">/</span>ungulatesmaxN)</span>
+<span id="cb16-69"><a href="multi-species-model.html#cb16-69" tabindex="-1"></a>  </span>
+<span id="cb16-70"><a href="multi-species-model.html#cb16-70" tabindex="-1"></a>  wolfN1[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>wolfnpups, <span class="at">prob=</span>wolfS1)</span>
+<span id="cb16-71"><a href="multi-species-model.html#cb16-71" tabindex="-1"></a>  wolfN2[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>wolfN1[t<span class="dv">-1</span>,r], <span class="at">prob=</span>wolfS2)</span>
+<span id="cb16-72"><a href="multi-species-model.html#cb16-72" tabindex="-1"></a>  wolfN3plus[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>wolfN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>wolfN3plus[t<span class="dv">-1</span>,r], <span class="at">prob=</span>wolfS3plus)</span>
+<span id="cb16-73"><a href="multi-species-model.html#cb16-73" tabindex="-1"></a>  wolfN[t, r] <span class="ot">&lt;-</span> wolfN1[t,r] <span class="sc">+</span> wolfN2[t,r] <span class="sc">+</span>wolfN3plus[t,r]</span>
+<span id="cb16-74"><a href="multi-species-model.html#cb16-74" tabindex="-1"></a>  </span>
+<span id="cb16-75"><a href="multi-species-model.html#cb16-75" tabindex="-1"></a>  </span>
+<span id="cb16-76"><a href="multi-species-model.html#cb16-76" tabindex="-1"></a>  <span class="co"># Red deer</span></span>
+<span id="cb16-77"><a href="multi-species-model.html#cb16-77" tabindex="-1"></a>  deerInnrepfemales <span class="ot">&lt;-</span> <span class="fu">round</span>((deerInN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>deerInN3plus[t<span class="dv">-1</span>,r])<span class="sc">/</span><span class="dv">2</span>) <span class="co"># number of reproducing females</span></span>
+<span id="cb16-78"><a href="multi-species-model.html#cb16-78" tabindex="-1"></a>  deerOutnrepfemales <span class="ot">&lt;-</span> <span class="fu">round</span>((deerOutN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>deerOutN3plus[t<span class="dv">-1</span>,r])<span class="sc">/</span><span class="dv">2</span>) <span class="co"># number of reproducing females</span></span>
+<span id="cb16-79"><a href="multi-species-model.html#cb16-79" tabindex="-1"></a>  deerInncalves <span class="ot">&lt;-</span> <span class="fu">FUNdeerncalves</span>(deerInnrepfemales, <span class="at">npop=</span>deerInN[t<span class="dv">-1</span>,r], <span class="at">capacity=</span><span class="dv">2000</span>)</span>
+<span id="cb16-80"><a href="multi-species-model.html#cb16-80" tabindex="-1"></a>  deerOutncalves <span class="ot">&lt;-</span> <span class="fu">FUNdeerncalves</span>(deerOutnrepfemales, <span class="at">npop=</span>deerOutN[t<span class="dv">-1</span>,r], <span class="at">capacity=</span><span class="dv">2000</span>)</span>
+<span id="cb16-81"><a href="multi-species-model.html#cb16-81" tabindex="-1"></a>  </span>
+<span id="cb16-82"><a href="multi-species-model.html#cb16-82" tabindex="-1"></a>  propdeerInindiet <span class="ot">&lt;-</span> deerInN[t<span class="dv">-1</span>,r]<span class="sc">/</span>(deerInN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisInN[t<span class="dv">-1</span>,r])</span>
+<span id="cb16-83"><a href="multi-species-model.html#cb16-83" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(propdeerInindiet)) propdeerInindiet <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-84"><a href="multi-species-model.html#cb16-84" tabindex="-1"></a>  propdeerOutindiet <span class="ot">&lt;-</span> deerOutN[t<span class="dv">-1</span>,r]<span class="sc">/</span>(deerOutN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisOutN[t<span class="dv">-1</span>,r])</span>
+<span id="cb16-85"><a href="multi-species-model.html#cb16-85" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(propdeerOutindiet)) propdeerOutindiet <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-86"><a href="multi-species-model.html#cb16-86" tabindex="-1"></a>  </span>
+<span id="cb16-87"><a href="multi-species-model.html#cb16-87" tabindex="-1"></a>  deerInS1 <span class="ot">&lt;-</span> <span class="fu">FUNdeerInS1</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerInindiet)</span>
+<span id="cb16-88"><a href="multi-species-model.html#cb16-88" tabindex="-1"></a>  deerInS2 <span class="ot">&lt;-</span> <span class="fu">FUNdeerInS2</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerInindiet)</span>
+<span id="cb16-89"><a href="multi-species-model.html#cb16-89" tabindex="-1"></a>  deerInS3plus <span class="ot">&lt;-</span> <span class="fu">FUNdeerInS3plus</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerInindiet)</span>
+<span id="cb16-90"><a href="multi-species-model.html#cb16-90" tabindex="-1"></a>  </span>
+<span id="cb16-91"><a href="multi-species-model.html#cb16-91" tabindex="-1"></a>  deerOutS1 <span class="ot">&lt;-</span> <span class="fu">FUNdeerInS1</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerOutindiet)</span>
+<span id="cb16-92"><a href="multi-species-model.html#cb16-92" tabindex="-1"></a>  deerOutS2 <span class="ot">&lt;-</span> <span class="fu">FUNdeerInS2</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerOutindiet)</span>
+<span id="cb16-93"><a href="multi-species-model.html#cb16-93" tabindex="-1"></a>  deerOutS3plus <span class="ot">&lt;-</span> <span class="fu">FUNdeerInS3plus</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propdeerOutindiet)</span>
+<span id="cb16-94"><a href="multi-species-model.html#cb16-94" tabindex="-1"></a>  </span>
+<span id="cb16-95"><a href="multi-species-model.html#cb16-95" tabindex="-1"></a>  </span>
+<span id="cb16-96"><a href="multi-species-model.html#cb16-96" tabindex="-1"></a>  deerInN1[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerInncalves, <span class="at">prob=</span>deerInS1)</span>
+<span id="cb16-97"><a href="multi-species-model.html#cb16-97" tabindex="-1"></a>  deerInN2[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerInN1[t<span class="dv">-1</span>,r], <span class="at">prob=</span>deerInS2)</span>
+<span id="cb16-98"><a href="multi-species-model.html#cb16-98" tabindex="-1"></a>  deerInN3plus[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerInN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>deerInN3plus[t<span class="dv">-1</span>,r], <span class="at">prob=</span>deerInS3plus)</span>
+<span id="cb16-99"><a href="multi-species-model.html#cb16-99" tabindex="-1"></a>  deerInN[t, r] <span class="ot">&lt;-</span> deerInN1[t,r] <span class="sc">+</span> deerInN2[t,r] <span class="sc">+</span>deerInN3plus[t,r]</span>
+<span id="cb16-100"><a href="multi-species-model.html#cb16-100" tabindex="-1"></a></span>
+<span id="cb16-101"><a href="multi-species-model.html#cb16-101" tabindex="-1"></a>  deerOutN1[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerOutncalves, <span class="at">prob=</span>deerOutS1)</span>
+<span id="cb16-102"><a href="multi-species-model.html#cb16-102" tabindex="-1"></a>  deerOutN2[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerOutN1[t<span class="dv">-1</span>,r], <span class="at">prob=</span>deerOutS2)</span>
+<span id="cb16-103"><a href="multi-species-model.html#cb16-103" tabindex="-1"></a>  deerOutN3plus[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>deerOutN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>deerOutN3plus[t<span class="dv">-1</span>,r], <span class="at">prob=</span>deerOutS3plus)</span>
+<span id="cb16-104"><a href="multi-species-model.html#cb16-104" tabindex="-1"></a>  deerOutN[t, r] <span class="ot">&lt;-</span> deerOutN1[t,r] <span class="sc">+</span> deerOutN2[t,r] <span class="sc">+</span>deerOutN3plus[t,r]</span>
+<span id="cb16-105"><a href="multi-species-model.html#cb16-105" tabindex="-1"></a>  deerN[t, r] <span class="ot">&lt;-</span> deerInN[t,r] <span class="sc">+</span> deerOutN[t,r]</span>
+<span id="cb16-106"><a href="multi-species-model.html#cb16-106" tabindex="-1"></a>    </span>
+<span id="cb16-107"><a href="multi-species-model.html#cb16-107" tabindex="-1"></a>  <span class="co"># Chamois</span></span>
+<span id="cb16-108"><a href="multi-species-model.html#cb16-108" tabindex="-1"></a>  chamoisInnrepfemales <span class="ot">&lt;-</span> <span class="fu">round</span>((chamoisInN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisInN3plus[t<span class="dv">-1</span>,r])<span class="sc">/</span><span class="dv">2</span>) <span class="co"># number of reproducing females</span></span>
+<span id="cb16-109"><a href="multi-species-model.html#cb16-109" tabindex="-1"></a>  chamoisInncalves <span class="ot">&lt;-</span> <span class="fu">FUNchamoisncalves</span>(chamoisInnrepfemales, <span class="at">npop=</span>chamoisInN[t<span class="dv">-1</span>,r], <span class="at">capacity=</span><span class="dv">2000</span>)</span>
+<span id="cb16-110"><a href="multi-species-model.html#cb16-110" tabindex="-1"></a>  chamoisOutnrepfemales <span class="ot">&lt;-</span> <span class="fu">round</span>((chamoisOutN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisOutN3plus[t<span class="dv">-1</span>,r])<span class="sc">/</span><span class="dv">2</span>) <span class="co"># number of reproducing females</span></span>
+<span id="cb16-111"><a href="multi-species-model.html#cb16-111" tabindex="-1"></a>  chamoisOutncalves <span class="ot">&lt;-</span> <span class="fu">FUNchamoisncalves</span>(chamoisOutnrepfemales, <span class="at">npop=</span>chamoisOutN[t<span class="dv">-1</span>,r], <span class="at">capacity=</span><span class="dv">8000</span>)</span>
+<span id="cb16-112"><a href="multi-species-model.html#cb16-112" tabindex="-1"></a>  </span>
+<span id="cb16-113"><a href="multi-species-model.html#cb16-113" tabindex="-1"></a>  propchamoisInindiet <span class="ot">&lt;-</span> chamoisInN[t<span class="dv">-1</span>,r]<span class="sc">/</span>(deerInN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisInN[t<span class="dv">-1</span>,r])</span>
+<span id="cb16-114"><a href="multi-species-model.html#cb16-114" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(propchamoisInindiet)) propchamoisInindiet <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-115"><a href="multi-species-model.html#cb16-115" tabindex="-1"></a>  propchamoisOutindiet <span class="ot">&lt;-</span> chamoisOutN[t<span class="dv">-1</span>,r]<span class="sc">/</span>(deerOutN[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisOutN[t<span class="dv">-1</span>,r])</span>
+<span id="cb16-116"><a href="multi-species-model.html#cb16-116" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(propchamoisOutindiet)) propchamoisOutindiet <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-117"><a href="multi-species-model.html#cb16-117" tabindex="-1"></a></span>
+<span id="cb16-118"><a href="multi-species-model.html#cb16-118" tabindex="-1"></a>  chamoisInS1 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS1</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisInindiet)</span>
+<span id="cb16-119"><a href="multi-species-model.html#cb16-119" tabindex="-1"></a>  chamoisInS2 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS2</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisInindiet)</span>
+<span id="cb16-120"><a href="multi-species-model.html#cb16-120" tabindex="-1"></a>  chamoisInS3plus <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS3plus</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisInindiet)</span>
+<span id="cb16-121"><a href="multi-species-model.html#cb16-121" tabindex="-1"></a></span>
+<span id="cb16-122"><a href="multi-species-model.html#cb16-122" tabindex="-1"></a>  chamoisOutS1 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS1</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisOutindiet)</span>
+<span id="cb16-123"><a href="multi-species-model.html#cb16-123" tabindex="-1"></a>  chamoisOutS2 <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS2</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisOutindiet)</span>
+<span id="cb16-124"><a href="multi-species-model.html#cb16-124" tabindex="-1"></a>  chamoisOutS3plus <span class="ot">&lt;-</span> <span class="fu">FUNchamoisS3plus</span>(wolfN[t<span class="dv">-1</span>,r]<span class="sc">/</span>wolfmaxN, <span class="at">propindiet=</span>propchamoisOutindiet)</span>
+<span id="cb16-125"><a href="multi-species-model.html#cb16-125" tabindex="-1"></a>  </span>
+<span id="cb16-126"><a href="multi-species-model.html#cb16-126" tabindex="-1"></a>  chamoisInN1[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisInncalves, <span class="at">prob=</span>chamoisInS1)</span>
+<span id="cb16-127"><a href="multi-species-model.html#cb16-127" tabindex="-1"></a>  chamoisInN2[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisInN1[t<span class="dv">-1</span>,r], <span class="at">prob=</span>chamoisInS2)</span>
+<span id="cb16-128"><a href="multi-species-model.html#cb16-128" tabindex="-1"></a>  chamoisInN3plus[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisInN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisInN3plus[t<span class="dv">-1</span>,r], <span class="at">prob=</span>chamoisInS3plus)</span>
+<span id="cb16-129"><a href="multi-species-model.html#cb16-129" tabindex="-1"></a>  chamoisInN[t, r] <span class="ot">&lt;-</span> chamoisInN1[t,r] <span class="sc">+</span> chamoisInN2[t,r] <span class="sc">+</span>chamoisInN3plus[t,r]</span>
+<span id="cb16-130"><a href="multi-species-model.html#cb16-130" tabindex="-1"></a>  </span>
+<span id="cb16-131"><a href="multi-species-model.html#cb16-131" tabindex="-1"></a>  chamoisOutN1[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisOutncalves, <span class="at">prob=</span>chamoisOutS1)</span>
+<span id="cb16-132"><a href="multi-species-model.html#cb16-132" tabindex="-1"></a>  chamoisOutN2[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisOutN1[t<span class="dv">-1</span>,r], <span class="at">prob=</span>chamoisOutS2)</span>
+<span id="cb16-133"><a href="multi-species-model.html#cb16-133" tabindex="-1"></a>  chamoisOutN3plus[t,r] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size=</span>chamoisOutN2[t<span class="dv">-1</span>,r]<span class="sc">+</span>chamoisOutN3plus[t<span class="dv">-1</span>,r], <span class="at">prob=</span>chamoisOutS3plus)</span>
+<span id="cb16-134"><a href="multi-species-model.html#cb16-134" tabindex="-1"></a>  chamoisOutN[t, r] <span class="ot">&lt;-</span> chamoisInN1[t,r] <span class="sc">+</span> chamoisOutN2[t,r] <span class="sc">+</span>chamoisOutN3plus[t,r]</span>
+<span id="cb16-135"><a href="multi-species-model.html#cb16-135" tabindex="-1"></a>  chamoisN[t, r] <span class="ot">&lt;-</span> chamoisInN[t,r] <span class="sc">+</span> chamoisOutN[t,r]</span>
+<span id="cb16-136"><a href="multi-species-model.html#cb16-136" tabindex="-1"></a>  } <span class="co"># close t</span></span>
+<span id="cb16-137"><a href="multi-species-model.html#cb16-137" tabindex="-1"></a>} <span class="co"># close r</span></span></code></pre></div>
+</div>
+<div id="results" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Results<a href="multi-species-model.html#results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="multi-species-model.html#cb17-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="fl">0.1</span>,<span class="dv">1</span>), <span class="at">oma=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb17-2"><a href="multi-species-model.html#cb17-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(wolfN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="cn">NA</span>, <span class="at">ylab=</span><span class="cn">NA</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb17-3"><a href="multi-species-model.html#cb17-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, wolfN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span>
+<span id="cb17-4"><a href="multi-species-model.html#cb17-4" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(wolfN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Wolf region&quot;</span>)</span>
+<span id="cb17-5"><a href="multi-species-model.html#cb17-5" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">&quot;Population size&quot;</span>,<span class="at">side=</span><span class="dv">2</span>, <span class="at">line=</span><span class="dv">0</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-6"><a href="multi-species-model.html#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="multi-species-model.html#cb17-7" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="multi-species-model.html#cb17-8" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(deerN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb17-9"><a href="multi-species-model.html#cb17-9" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, deerN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>), <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb17-10"><a href="multi-species-model.html#cb17-10" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(deerN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Red deer region&quot;</span>)</span>
+<span id="cb17-11"><a href="multi-species-model.html#cb17-11" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="multi-species-model.html#cb17-12" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(deerInN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb17-13"><a href="multi-species-model.html#cb17-13" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, deerInN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.2</span>), <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb17-14"><a href="multi-species-model.html#cb17-14" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(deerInN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Red deer in park&quot;</span>)</span>
+<span id="cb17-15"><a href="multi-species-model.html#cb17-15" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="multi-species-model.html#cb17-16" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="multi-species-model.html#cb17-17" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(deerOutN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb17-18"><a href="multi-species-model.html#cb17-18" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, deerOutN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.2</span>), <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb17-19"><a href="multi-species-model.html#cb17-19" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(deerOutN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Red deer outside park&quot;</span>)</span>
+<span id="cb17-20"><a href="multi-species-model.html#cb17-20" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="multi-species-model.html#cb17-21" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="multi-species-model.html#cb17-22" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb17-23"><a href="multi-species-model.html#cb17-23" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, chamoisN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span>
+<span id="cb17-24"><a href="multi-species-model.html#cb17-24" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(chamoisN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Chamois region&quot;</span>)</span>
+<span id="cb17-25"><a href="multi-species-model.html#cb17-25" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="multi-species-model.html#cb17-26" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="multi-species-model.html#cb17-27" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisInN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb17-28"><a href="multi-species-model.html#cb17-28" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, chamoisInN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span>
+<span id="cb17-29"><a href="multi-species-model.html#cb17-29" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(chamoisInN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Chamois in park&quot;</span>)</span>
+<span id="cb17-30"><a href="multi-species-model.html#cb17-30" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="multi-species-model.html#cb17-31" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisOutN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb17-32"><a href="multi-species-model.html#cb17-32" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, chamoisOutN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.2</span>))</span>
+<span id="cb17-33"><a href="multi-species-model.html#cb17-33" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(chamoisOutN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Chamois outside park&quot;</span>)</span></code></pre></div>
+<p><img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="functions-for-the-demographic-parameters.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["multi-species_model_SNP-region.pdf", "multi-species_model_SNP-region.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

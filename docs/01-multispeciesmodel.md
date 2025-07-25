@@ -146,7 +146,7 @@ ungulatesmaxN <- 10000 # is used in the model to normalise the effect of ungulat
 
 
 
-## Proportion of the population from outside that is inside the park
+### Proportion of the population from outside that is inside the park
 
 We assign a deer to belong to inside or outside the park according to where it is during reproduction. The location of deer can change seasonally during hunting or across years depending on the vegetation.  
 
@@ -244,7 +244,7 @@ lines(x, y3, lwd=2, col="brown")
 <img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 
-## Red deer reproduction
+### Red deer reproduction
 
 We assume that a female deer has 0,1 or 2 young with probabilities 0.05, 0.85 and 0.1. 
 
@@ -324,9 +324,11 @@ FUNchamoisncalves <- function(nrfemales, npop, capacity=2000){
 ```
 
 
-## Model
+# Multi-species model
 
-We pre-breeding population models. 
+## Model runs
+
+We build pre-breeding population models. 
 
 
 ```r
@@ -469,6 +471,8 @@ for(r in 1:nsim){
 } # close r
 ```
 
+
+## Results
 
 
 ```r

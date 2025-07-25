@@ -14,5 +14,7 @@ red-deer-reproduction
 chamois
 chamois-survival
 chamois-reproduction
-model
+multi-species-model
+model-runs
+results
 references
