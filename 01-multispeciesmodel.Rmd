@@ -26,11 +26,11 @@ bibliography: PopModAlpineSpec.bib
 # Terminology
 
 We adopt the following logic for parameter names:  
-1. species  
-2. parameter name (survival, reproduction etc.)  
-3. age index (1 = first year (birth to one year after birth), 2 second year,  ... , 2+ or 2plus includes the second and all following years)  
-4. space (in case of spatial heterogeneity)  
-5. time (year, month or another time period)  
+1. species   
+2. area (A = In for within the park, Out for outside the park)
+3. parameter name (survival, reproduction etc.)  
+4. age index (1 = first year (birth to one year after birth), 2 second year,  ... , 2+ or 2plus includes the second and all following years)  
+5. time (year)  
 
 
 We follow the terminology given in @Thomson.2009d for survival parameters: $S$ for true survival, $\phi$ for apparent survival, i.e. the product of site fidelity and survival.
@@ -42,28 +42,26 @@ TOD: indices t für alle Parameter einfügen.
 
 | in text           | in code        | description |
 | ----------------- | -------------- |----------- |
-| $^{wolf}S_{1,t}$      | `wolfS1`       | annual survival of a wolf from birth to first summer |
-| $^{wolf}S_{2,t}$      | `wolfS2`       | annual survival of a wolf from first to second summer |
-| $^{wolf}S_{3+,t}$   | `wolfS3plus`   | annual survival of a wolf from second summer onward |
-| $^{wolf}f$   | `wolff`   | average number of puppies produced per female in one year |
-| $^{wolf}N_1$   | `wolfN1`   | number of first year wolves just before reproduction|
-| $^{wolf}N_2$   | `wolfN2`   | number of second year wolves just before reproduction|
-| $^{wolf}N_{3+}$   | `wolfN3plus`   | number of older wolves just before reproduction|
-| $^{wolf}P$   | `wolfP`   | number of wolf packs |
-| $^{wolf}F_t$   | `wolfN3plus`   | number of reproducing female wolves |
-| $^{deerIn}N_1$   | `deerS1`        | number of individuals (total population) of deer inside and outside of the park |
-| $^{deer}N_1$   | `deerS1`        | number of individuals (total population) of deer inside and outside of the park 
-| $^{deer}S_1$   | `deerS1`        | survival of a deer from birth to first summer |
-| $^{deer}S_2$   | `deerS2`        | survival of a deer from first to second summer |
-| $^{deer}S_{3+}$   | `deerS3plus`        | survival of a deer from second summer onward |
-| $^{deer}f$   | `deerf`        | average number of young produced per female in one year |
-| $^{deer}p^{SuIn}$   | `deerpropSuIn`        | proportion of total population inside the park during summer|
-| $^{deer}p^{HuIn}$   | `deerpropHuIn`        | proportion of total population inside the park during hunting season|
-| $^{deer}p^{WiIn}$   | `deerpropWiIn`        | proportion of total population inside the park during winter|
-| $^{chamois}S_1$   | `chamoisS1`        | survival of a chamois from birth to first summer |
-| $^{chamois}S_2$   | `chamoisS2`        | survival of a chamois from first to second summer |
-| $^{chamois}S_{3+}$   | `chamoisS3plus`        | survival of a chamois from second summer onward |
-| $^{chamois}f$   | `chamoisf`        | average number of young produced per female in one year |
+| $^{wolfA}S_{1,t}$      | `wolfInS1`, `wolfOutS1`       | annual survival of a wolf from birth to first summer |
+| $^{wolfA}S_{2,t}$      | `wolfInS2`,  `wolfOutS2`      | annual survival of a wolf from first to second summer |
+| $^{wolfA}S_{3+,t}$   | `wolfInS3plus`, `wolfOutS3plus`   | annual survival of a wolf from second summer onward |
+| $^{wolfA}f_t$   | `wolfInf`, `wolfOutf`   | average number of puppies produced per female in one year |
+| $^{wolfA}N_{1,t}$   | `wolfInN1`,`wolfOutfN1`    | number of first year wolves just before reproduction inside or outside of the park|
+| $^{wolfA}N_{2,t}$   | `wolfInN2`, `wolfOutN2`   | number of second year wolves just before reproduction inside or outside of the park|
+| $^{wolfA}N_{3+,t}$   | `wolfInN3plus`, `wolfOutN3plus`   | number of older wolves just before reproduction inside or outside of the park|
+| $^{wolfA}P_t$   | `wolfInP`, `wolfOutP`   | number of wolf packs inside or outside of the park|
+| $^{wolfA}F_t$   | `wolfInFplus`, `wolfOutFplus`   | number of reproducing female wolves inside or outside of the park|
+| $^{deerA}N_1$   | `deerInN1`, `deerOutN1`        | number of yearlings of deer inside and outside of the park |
+| $^{deerA}N_2$   | `deerInN2`, `deerOutN2`        | number of second year individuals of deer inside and outside of the park |
+| $^{deerA}N_3$   | `deerInN3`, `deerOutN3`        | number of third year and older individuals of deer inside and outside of the park |
+| $^{deerA}S_1$   |  `deerInS1`, `deerOutS1`        | survival of a deer from birth to first summer |
+| $^{deerA}S_2$   | `deerInS2`, `deerOutS2`        | survival of a deer from first to second summer |
+| $^{deerA}S_{3+}$   | `deerInS3plus`, `deerOutS3plus`        | survival of a deer from second summer onward |
+| $^{deerA}f$   | `deerInf`, `deerOutf`        | average number of young produced per female in one year |
+| $^{chamoisA}S_1$   | `chamoisInS1`, `chamoisOutS1`        | survival of a chamois from birth to first summer |
+| $^{chamoisA}S_2$   | `chamoisInS2`, `chamoisOutS2`        | survival of a chamois from first to second summer |
+| $^{chamoisA}S_{3+}$   | `chamoisInS3plus`, `chamoisOutS3plus`        | survival of a chamois from second summer onward |
+| $^{chamoisA}f$   | `chamoisInf`, `chamoisOutf`        | average number of young produced per female in one year |
 
 
 
@@ -116,6 +114,8 @@ FUNwolfnpups <- function(nfemalesW){
 }
 
 ```
+
+
 ### Carrying capacity
 
 ```{r}
