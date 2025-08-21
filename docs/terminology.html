@@ -23,7 +23,7 @@
 <meta name="author" content="Fränzi Korner-Nievergelt" />
 
 
-<meta name="date" content="2025-07-25" />
+<meta name="date" content="2025-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,7 +180,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer"><i class="fa fa-check"></i><b>5.2</b> Red deer</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#proportion-of-the-population-from-outside-that-is-inside-the-park"><i class="fa fa-check"></i><b>5.2.1</b> Proportion of the population from outside that is inside the park</a></li>
+<li class="chapter" data-level="5.2.1" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#deer-movements"><i class="fa fa-check"></i><b>5.2.1</b> Deer movements</a></li>
 <li class="chapter" data-level="5.2.2" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer-survival"><i class="fa fa-check"></i><b>5.2.2</b> Red deer survival</a></li>
 <li class="chapter" data-level="5.2.3" data-path="functions-for-the-demographic-parameters.html"><a href="functions-for-the-demographic-parameters.html#red-deer-reproduction"><i class="fa fa-check"></i><b>5.2.3</b> Red deer reproduction</a></li>
 </ul></li>
@@ -222,10 +222,6 @@ div.csl-indent {
 4. age index (1 = first year (birth to one year after birth), 2 second year, … , 2+ or 2plus includes the second and all following years)<br />
 5. time (year)</p>
 <p>We follow the terminology given in <span class="citation">Thomson et al. (<a href="#ref-Thomson.2009d">2009</a>)</span> for survival parameters: <span class="math inline">\(S\)</span> for true survival, <span class="math inline">\(\phi\)</span> for apparent survival, i.e. the product of site fidelity and survival.</p>
-<p>TOD: indices t für alle Parameter einfügen.</p>
-<ul>
-<li>Populationen in und out separat!</li>
-</ul>
 <table>
 <colgroup>
 <col width="40%" />
@@ -286,63 +282,64 @@ div.csl-indent {
 <td>number of reproducing female wolves inside or outside of the park</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{deerA}N_1\)</span></td>
+<td><span class="math inline">\(^{deerA}N_{1,t}\)</span></td>
 <td><code>deerInN1</code>, <code>deerOutN1</code></td>
 <td>number of yearlings of deer inside and outside of the park</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{deerA}N_2\)</span></td>
+<td><span class="math inline">\(^{deerA}N_{2,t}\)</span></td>
 <td><code>deerInN2</code>, <code>deerOutN2</code></td>
 <td>number of second year individuals of deer inside and outside of the park</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{deerA}N_3\)</span></td>
+<td><span class="math inline">\(^{deerA}N_{3,t}\)</span></td>
 <td><code>deerInN3</code>, <code>deerOutN3</code></td>
 <td>number of third year and older individuals of deer inside and outside of the park</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{deerA}S_1\)</span></td>
+<td><span class="math inline">\(^{deerA}S_{1,t}\)</span></td>
 <td><code>deerInS1</code>, <code>deerOutS1</code></td>
 <td>survival of a deer from birth to first summer</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{deerA}S_2\)</span></td>
+<td><span class="math inline">\(^{deerA}S_{2,t}\)</span></td>
 <td><code>deerInS2</code>, <code>deerOutS2</code></td>
 <td>survival of a deer from first to second summer</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{deerA}S_{3+}\)</span></td>
+<td><span class="math inline">\(^{deerA}S_{3+,t}\)</span></td>
 <td><code>deerInS3plus</code>, <code>deerOutS3plus</code></td>
 <td>survival of a deer from second summer onward</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{deerA}f\)</span></td>
+<td><span class="math inline">\(^{deerA}f_{t}\)</span></td>
 <td><code>deerInf</code>, <code>deerOutf</code></td>
 <td>average number of young produced per female in one year</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{chamoisA}S_1\)</span></td>
+<td><span class="math inline">\(^{chamoisA}S_{1,t}\)</span></td>
 <td><code>chamoisInS1</code>, <code>chamoisOutS1</code></td>
 <td>survival of a chamois from birth to first summer</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{chamoisA}S_2\)</span></td>
+<td><span class="math inline">\(^{chamoisA}S_{2,t}\)</span></td>
 <td><code>chamoisInS2</code>, <code>chamoisOutS2</code></td>
 <td>survival of a chamois from first to second summer</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{chamoisA}S_{3+}\)</span></td>
+<td><span class="math inline">\(^{chamoisA}S_{3+,t}\)</span></td>
 <td><code>chamoisInS3plus</code>, <code>chamoisOutS3plus</code></td>
 <td>survival of a chamois from second summer onward</td>
 </tr>
 <tr>
-<td><span class="math inline">\(^{chamoisA}f\)</span></td>
+<td><span class="math inline">\(^{chamoisA}f_{t}\)</span></td>
 <td><code>chamoisInf</code>, <code>chamoisOutf</code></td>
 <td>average number of young produced per female in one year</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="terminology.html#cb1-1" tabindex="-1"></a>TT <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># number of years to run the model</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="terminology.html#cb3-1" tabindex="-1"></a>TT <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># number of years to run the model</span></span>
+<span id="cb3-2"><a href="terminology.html#cb3-2" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="co"># number of Monte Carlo iterations</span></span></code></pre></div>
 </div>
 <h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">

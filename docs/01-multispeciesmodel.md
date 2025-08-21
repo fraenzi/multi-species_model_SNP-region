@@ -1,7 +1,7 @@
 ---
 title: "Tryout of the system model"
 author: Fränzi Korner-Nievergelt
-date: "2025-07-25"
+date: "2025-08-21"
 output:
   bookdown::html_document2:
     toc: true
@@ -18,6 +18,15 @@ bibliography: PopModAlpineSpec.bib
 
 
 
+```r
+library(MASS)
+library(scales)
+```
+
+```
+## Warning: Paket 'scales' wurde unter R Version 4.2.3 erstellt
+```
+
 
 # Terminology
 
@@ -32,10 +41,6 @@ We adopt the following logic for parameter names:
 We follow the terminology given in @Thomson.2009d for survival parameters: $S$ for true survival, $\phi$ for apparent survival, i.e. the product of site fidelity and survival.
 
 
-TOD: indices t für alle Parameter einfügen.
-
-- Populationen in und out separat!
-
 | in text           | in code        | description |
 | ----------------- | -------------- |----------- |
 | $^{wolfA}S_{1,t}$      | `wolfInS1`, `wolfOutS1`       | annual survival of a wolf from birth to first summer |
@@ -47,22 +52,23 @@ TOD: indices t für alle Parameter einfügen.
 | $^{wolfA}N_{3+,t}$   | `wolfInN3plus`, `wolfOutN3plus`   | number of older wolves just before reproduction inside or outside of the park|
 | $^{wolfA}P_t$   | `wolfInP`, `wolfOutP`   | number of wolf packs inside or outside of the park|
 | $^{wolfA}F_t$   | `wolfInFplus`, `wolfOutFplus`   | number of reproducing female wolves inside or outside of the park|
-| $^{deerA}N_1$   | `deerInN1`, `deerOutN1`        | number of yearlings of deer inside and outside of the park |
-| $^{deerA}N_2$   | `deerInN2`, `deerOutN2`        | number of second year individuals of deer inside and outside of the park |
-| $^{deerA}N_3$   | `deerInN3`, `deerOutN3`        | number of third year and older individuals of deer inside and outside of the park |
-| $^{deerA}S_1$   |  `deerInS1`, `deerOutS1`        | survival of a deer from birth to first summer |
-| $^{deerA}S_2$   | `deerInS2`, `deerOutS2`        | survival of a deer from first to second summer |
-| $^{deerA}S_{3+}$   | `deerInS3plus`, `deerOutS3plus`        | survival of a deer from second summer onward |
-| $^{deerA}f$   | `deerInf`, `deerOutf`        | average number of young produced per female in one year |
-| $^{chamoisA}S_1$   | `chamoisInS1`, `chamoisOutS1`        | survival of a chamois from birth to first summer |
-| $^{chamoisA}S_2$   | `chamoisInS2`, `chamoisOutS2`        | survival of a chamois from first to second summer |
-| $^{chamoisA}S_{3+}$   | `chamoisInS3plus`, `chamoisOutS3plus`        | survival of a chamois from second summer onward |
-| $^{chamoisA}f$   | `chamoisInf`, `chamoisOutf`        | average number of young produced per female in one year |
+| $^{deerA}N_{1,t}$   | `deerInN1`, `deerOutN1`        | number of yearlings of deer inside and outside of the park |
+| $^{deerA}N_{2,t}$   | `deerInN2`, `deerOutN2`        | number of second year individuals of deer inside and outside of the park |
+| $^{deerA}N_{3,t}$   | `deerInN3`, `deerOutN3`        | number of third year and older individuals of deer inside and outside of the park |
+| $^{deerA}S_{1,t}$   |  `deerInS1`, `deerOutS1`        | survival of a deer from birth to first summer |
+| $^{deerA}S_{2,t}$   | `deerInS2`, `deerOutS2`        | survival of a deer from first to second summer |
+| $^{deerA}S_{3+,t}$   | `deerInS3plus`, `deerOutS3plus`        | survival of a deer from second summer onward |
+| $^{deerA}f_{t}$   | `deerInf`, `deerOutf`        | average number of young produced per female in one year |
+| $^{chamoisA}S_{1,t}$   | `chamoisInS1`, `chamoisOutS1`        | survival of a chamois from birth to first summer |
+| $^{chamoisA}S_{2,t}$   | `chamoisInS2`, `chamoisOutS2`        | survival of a chamois from first to second summer |
+| $^{chamoisA}S_{3+,t}$   | `chamoisInS3plus`, `chamoisOutS3plus`        | survival of a chamois from second summer onward |
+| $^{chamoisA}f_{t}$   | `chamoisInf`, `chamoisOutf`        | average number of young produced per female in one year |
 
 
 
 ```r
 TT <- 100 # number of years to run the model
+nsim <- 50 # number of Monte Carlo iterations
 ```
 
 
@@ -84,24 +90,61 @@ envNDVI <- rnorm(TT)
 
 ### Survival
 
-We assume that wolf survival is higher the higher the deer population
+We assume that wolf survival is higher the higher the ungulate populations
 
 
 ```r
-# Funktion sollte enthalten: 1. Simulation korrelierter Modellkoeffizienten, simulation verschiedener Survivalwerte
-FUNwolfS1 <- function(x) plogis(-0.9 + 0.6*x)  
-FUNwolfS2 <- function(x) plogis(0 + 0.6*x)
-FUNwolfS3plus <- function(x) plogis(0.6 + 0.6*x)
+FUNwolfS1 <- function(x, sdInt=0.2, sdslope=0.2, corpars=0.8){
+  # x = normalised ungulate density (0 = minimal, 1 = maximal)
+  # corpars = correlation between intercept and slope
+  Sigma <- matrix(c(sdInt^2, sdInt*sdslope*corpars, sdInt*sdslope*corpars, sdslope^2), nrow=2)
+  pars <- mvrnorm(n = 1, mu = c(-0.9,0.6), Sigma = Sigma)
+  plogis(pars[1] + pars[2]*x)  
+}
+
+FUNwolfS2 <- function(x, sdInt=0.2, sdslope=0.2, corpars=0.8){
+  Sigma <- matrix(c(sdInt^2, sdInt*sdslope*corpars, sdInt*sdslope*corpars, sdslope^2), nrow=2)
+  pars <- mvrnorm(n = 1, mu = c(0,0.6), Sigma = Sigma)
+  plogis(pars[1] + pars[2]*x)
+}
+
+FUNwolfS3plus <- function(x, sdInt=0.2, sdslope=0.2, corpars=0.8){ 
+  Sigma <- matrix(c(sdInt^2, sdInt*sdslope*corpars, sdInt*sdslope*corpars, sdslope^2), nrow=2)
+  pars <- mvrnorm(n = 1, mu = c(0.6,0.6), Sigma = Sigma)
+    plogis(pars[1] + pars[2]*x)
+}
 
 x <- seq(0, 1, length=100)  # 0 = no ungulates, 1 =maximum number of ungulates
-y1 <- FUNwolfS1(x)
-y2 <- FUNwolfS2(x)
-y3 <- FUNwolfS3plus(x)
-  
-plot(x, y1, type="l", lwd=2, col="orange", xlab="Food availability", ylab="Annual survival of the Wolf",
-     ylim=c(0,1))
-lines(x, y2, lwd=2, col="orange3")
-lines(x, y3, lwd=2, col="brown")
+y1 <- matrix(NA, ncol=nsim, nrow=length(x))
+y2 <- matrix(NA, ncol=nsim, nrow=length(x))
+y3 <- matrix(NA, ncol=nsim, nrow=length(x))
+for(i in 1:nsim){
+  y1[,i] <- FUNwolfS1(x)
+  y2[,i] <- FUNwolfS2(x)
+  y3[,i] <- FUNwolfS3plus(x)
+}
+
+y1mean <- apply(y1, 1, mean)
+y1lwr <- apply(y1, 1, quantile, probs=0.025)
+y1upr <- apply(y1, 1, quantile, probs=0.975)
+
+
+y2mean <- apply(y2, 1, mean)
+y2lwr <- apply(y2, 1, quantile, probs=0.025)
+y2upr <- apply(y2, 1, quantile, probs=0.975)
+
+y3mean <- apply(y3, 1, mean)
+y3lwr <- apply(y3, 1, quantile, probs=0.025)
+y3upr <- apply(y3, 1, quantile, probs=0.975)
+
+plot(x, y1[,1], type="n", lwd=2, col="orange", xlab="Ungulate population", ylab="Annual survival of the Wolf", ylim=c(0,1), xaxt="n")
+axis(1, at=c(0,1), labels=c("Minimum", "Maximum"))
+polygon(c(x, rev(x)), c(y1lwr, rev(y1upr)), border=NA, col=alpha("orange", 0.5))
+lines(x, y1mean, col="orange", lwd=2)
+polygon(c(x, rev(x)), c(y2lwr, rev(y2upr)), border=NA, col=alpha("orange3", 0.5))
+lines(x, y2mean, col="orange3", lwd=2)
+polygon(c(x, rev(x)), c(y3lwr, rev(y3upr)), border=NA, col=alpha("brown", 0.5))
+lines(x, y3mean, col="brown", lwd=2)
 
 legend("bottomright", lwd=2, col=c("orange", "orange3", "brown"), legend=c("first year", "second year", "third year and older"))
 ```
@@ -146,18 +189,20 @@ ungulatesmaxN <- 10000 # is used in the model to normalise the effect of ungulat
 
 
 
-### Proportion of the population from outside that is inside the park
+### Deer movements
 
-We assign a deer to belong to inside or outside the park according to where it is during reproduction. The location of deer can change seasonally during hunting or across years depending on the vegetation.  
+A proportion of deer moves into the park during hunting and also depending on the grass biomass above the treeline, a proportion of deer moves above the treeline where the deer can interact with Chamois. 
+
+We assign a deer to belong to inside or outside the park according to where it is during reproduction. The location of deer can change seasonally during hunting.  
 
 Hunting starts in September (whole months), if quota not fulfilled, there is another hunt in October for around 10 days. During the hunting period, a certain proportion of deer from outside the park move temporary into the park where they are protected. 
-Also, for reproduction, deer move into the park depending on the how green the alpine meadows are.*QUESTION: does the ndvi really affect the proportion of deer in the park? Couldn't it be that the proportion inside and outside is not affected but just, at which elevations deer feed? Thus, when ndvi is high, deer move upward also outside the park?*
 
 
 
 ```r
-# maybe this function is not needed, but a function for the elevations used by deer to model their interaction with chamois
-FUNdeerpropSuIn <- function(ndvi){
+# proportion of deer that are above the treeline during summer 
+# the number of deeer above the treeline is competing with chamois
+FUNdeerpropSuhigh <- function(ndvi){
   # standardised ndvi (mean 0, sd 1)
  return(plogis(0.3*ndvi))
 }
@@ -169,13 +214,12 @@ FUNdeerpropHuIn <- function(){
 }
 
 x <- seq(-3,3)
-plot(x, FUNdeerpropSuIn(x), type="l", lwd=2, col="darkgreen", ylim=c(0,1), 
-     xlab="NDVI of alpine meadows (z-transformed)", las=1, ylab="Proportion of deer inside or above the treeline? during spring/summer")
+plot(x, FUNdeerpropSuhigh(x), type="l", lwd=2, col="darkgreen", ylim=c(0,1), 
+     xlab="NDVI of alpine meadows (z-transformed)", las=1, ylab="Proportion of deer above the treeline during spring/summer")
 ```
 
 <img src="01-multispeciesmodel_files/figure-html/unnamed-chunk-4-1.png" width="672" />
-
-*open questions: what are plausible effect sizes? what proportion of deer from the outside population move inside during hunting?*  
+  
 
 
 ### Red deer survival
@@ -204,7 +248,7 @@ max(Re(eigen(deerLeslie)$values))
 
 
 
-We assume that deer survival is lower the higher wolf population and juveniles are more strongly affected by the wolf compared to adults. Further, the effect of the wolf is larger the larger the proportion of deer in the diet of the wolf. 
+We assume that deer survival is lower the higher the wolf population and juveniles are more strongly affected by the wolf compared to adults. Further, the effect of the wolf is larger the larger the proportion of deer in the diet of the wolf. 
 
 
 ```r
@@ -332,8 +376,6 @@ We build pre-breeding population models.
 
 
 ```r
-nsim <- 200 # number of simulations
-
 wolfN1 <- matrix(nrow=TT, ncol=nsim)
 wolfN2 <- matrix(nrow=TT, ncol=nsim)
 wolfN3plus <- matrix(nrow=TT, ncol=nsim)
@@ -474,6 +516,8 @@ for(r in 1:nsim){
 
 ## Results
 
+ATTENTION: This model is under construction, thus the results here show how a possible outcome could look like. However, the parameters used to simulate the model are not yet worked out properly. Therefore, be aware: unreliable input gives unreliable output. 
+
 
 ```r
 par(mfrow=c(7,1), mar=c(1,4,0.1,1), oma=c(3,2,0,0))
@@ -498,12 +542,12 @@ text(1,max(deerOutN), adj=c(0,1) , labels="Red deer outside park")
 
 
 plot(1:TT, seq(0,max(chamoisN), length=TT), type="n", xlab="year", ylab="")
-for(i in 1:nsim) lines(1:TT, chamoisN[,i], col=rgb(0,0,0,0.2))
+for(i in 1:nsim) lines(1:TT, chamoisN[,i], col=rgb(0,0,0,0.2), xaxt="n")
 text(1,max(chamoisN), adj=c(0,1) , labels="Chamois region")
 
 
 plot(1:TT, seq(0,max(chamoisInN), length=TT), type="n", xlab="year", ylab="")
-for(i in 1:nsim) lines(1:TT, chamoisInN[,i], col=rgb(0,1,0,0.2))
+for(i in 1:nsim) lines(1:TT, chamoisInN[,i], col=rgb(0,1,0,0.2), xaxt="n")
 text(1,max(chamoisInN), adj=c(0,1) , labels="Chamois in park")
 
 plot(1:TT, seq(0,max(chamoisOutN), length=TT), type="n", xlab="year", ylab="")
