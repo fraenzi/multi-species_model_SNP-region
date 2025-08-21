@@ -36,10 +36,6 @@ We adopt the following logic for parameter names:
 We follow the terminology given in @Thomson.2009d for survival parameters: $S$ for true survival, $\phi$ for apparent survival, i.e. the product of site fidelity and survival.
 
 
-TOD: indices t für alle Parameter einfügen.
-
-- Populationen in und out separat!
-
 | in text           | in code        | description |
 | ----------------- | -------------- |----------- |
 | $^{wolfA}S_{1,t}$      | `wolfInS1`, `wolfOutS1`       | annual survival of a wolf from birth to first summer |
@@ -51,21 +47,22 @@ TOD: indices t für alle Parameter einfügen.
 | $^{wolfA}N_{3+,t}$   | `wolfInN3plus`, `wolfOutN3plus`   | number of older wolves just before reproduction inside or outside of the park|
 | $^{wolfA}P_t$   | `wolfInP`, `wolfOutP`   | number of wolf packs inside or outside of the park|
 | $^{wolfA}F_t$   | `wolfInFplus`, `wolfOutFplus`   | number of reproducing female wolves inside or outside of the park|
-| $^{deerA}N_1$   | `deerInN1`, `deerOutN1`        | number of yearlings of deer inside and outside of the park |
-| $^{deerA}N_2$   | `deerInN2`, `deerOutN2`        | number of second year individuals of deer inside and outside of the park |
-| $^{deerA}N_3$   | `deerInN3`, `deerOutN3`        | number of third year and older individuals of deer inside and outside of the park |
-| $^{deerA}S_1$   |  `deerInS1`, `deerOutS1`        | survival of a deer from birth to first summer |
-| $^{deerA}S_2$   | `deerInS2`, `deerOutS2`        | survival of a deer from first to second summer |
-| $^{deerA}S_{3+}$   | `deerInS3plus`, `deerOutS3plus`        | survival of a deer from second summer onward |
-| $^{deerA}f$   | `deerInf`, `deerOutf`        | average number of young produced per female in one year |
-| $^{chamoisA}S_1$   | `chamoisInS1`, `chamoisOutS1`        | survival of a chamois from birth to first summer |
-| $^{chamoisA}S_2$   | `chamoisInS2`, `chamoisOutS2`        | survival of a chamois from first to second summer |
-| $^{chamoisA}S_{3+}$   | `chamoisInS3plus`, `chamoisOutS3plus`        | survival of a chamois from second summer onward |
-| $^{chamoisA}f$   | `chamoisInf`, `chamoisOutf`        | average number of young produced per female in one year |
+| $^{deerA}N_{1,t}$   | `deerInN1`, `deerOutN1`        | number of yearlings of deer inside and outside of the park |
+| $^{deerA}N_{2,t}$   | `deerInN2`, `deerOutN2`        | number of second year individuals of deer inside and outside of the park |
+| $^{deerA}N_{3,t}$   | `deerInN3`, `deerOutN3`        | number of third year and older individuals of deer inside and outside of the park |
+| $^{deerA}S_{1,t}$   |  `deerInS1`, `deerOutS1`        | survival of a deer from birth to first summer |
+| $^{deerA}S_{2,t}$   | `deerInS2`, `deerOutS2`        | survival of a deer from first to second summer |
+| $^{deerA}S_{3+,t}$   | `deerInS3plus`, `deerOutS3plus`        | survival of a deer from second summer onward |
+| $^{deerA}f_{t}$   | `deerInf`, `deerOutf`        | average number of young produced per female in one year |
+| $^{chamoisA}S_{1,t}$   | `chamoisInS1`, `chamoisOutS1`        | survival of a chamois from birth to first summer |
+| $^{chamoisA}S_{2,t}$   | `chamoisInS2`, `chamoisOutS2`        | survival of a chamois from first to second summer |
+| $^{chamoisA}S_{3+,t}$   | `chamoisInS3plus`, `chamoisOutS3plus`        | survival of a chamois from second summer onward |
+| $^{chamoisA}f_{t}$   | `chamoisInf`, `chamoisOutf`        | average number of young produced per female in one year |
 
 
 ```{r timedefinition}
 TT <- 100 # number of years to run the model
+nsim <- 50 # number of Monte Carlo iterations
 ```
 
 
