@@ -521,13 +521,13 @@ for(i in 1:nsim) lines(1:TT, deerOutN[,i], col=rgb(0,0,1,0.2), xaxt="n")
 text(1,max(deerOutN), adj=c(0,1) , labels="Red deer outside park")
 
 
-plot(1:TT, seq(0,max(chamoisN), length=TT), type="n", xlab="year", ylab="")
-for(i in 1:nsim) lines(1:TT, chamoisN[,i], col=rgb(0,0,0,0.2), xaxt="n")
+plot(1:TT, seq(0,max(chamoisN), length=TT), type="n", xlab="year", ylab="", xaxt="n")
+for(i in 1:nsim) lines(1:TT, chamoisN[,i], col=rgb(0,0,0,0.2))
 text(1,max(chamoisN), adj=c(0,1) , labels="Chamois region")
 
 
-plot(1:TT, seq(0,max(chamoisInN), length=TT), type="n", xlab="year", ylab="")
-for(i in 1:nsim) lines(1:TT, chamoisInN[,i], col=rgb(0,1,0,0.2), xaxt="n")
+plot(1:TT, seq(0,max(chamoisInN), length=TT), type="n", xlab="year", ylab="", xaxt="n")
+for(i in 1:nsim) lines(1:TT, chamoisInN[,i], col=rgb(0,1,0,0.2))
 text(1,max(chamoisInN), adj=c(0,1) , labels="Chamois in park")
 
 plot(1:TT, seq(0,max(chamoisOutN), length=TT), type="n", xlab="year", ylab="")
