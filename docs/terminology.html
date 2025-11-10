@@ -239,8 +239,133 @@ div.csl-indent {
 </thead>
 <tbody>
 <tr>
+<td><span class="math inline">\(^{wolf}N_{0,t}\)</span></td>
+<td><code>wolfN0</code></td>
+<td>number of puppies</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{wolf}N_{1,t}\)</span></td>
+<td><code>wolfN1</code></td>
+<td>number of first year wolves at reproduction</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{wolf}N_{2,t}\)</span></td>
+<td><code>wolfN2</code></td>
+<td>number of second year wolves at reproduction</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{wolf}N_{3+,t}\)</span></td>
+<td><code>wolfN3plus</code></td>
+<td>number of older wolves at reproduction</td>
+</tr>
+<tr>
 <td><span class="math inline">\(^{wolf}S_{0,t}\)</span></td>
-<td><code>wolfS0``       | annual survival of a wolf from birth to first summer | | $^{wolf}S_{1,t}$      |</code>wolfS1<code>| annual survival of a wolf from first to second summer | | $^{wolf}S_{2+,t}$   |</code>wolfS2plus<code>| annual survival of a wolf from second summer onward | | $^{wolf}f_t$   |</code>wolff<code>| average number of puppies produced per female in one year | | $^{wolf}N_{0,t}$   |</code>wolfN0<code>| number of puppies| | $^{wolf}N_{1,t}$   |</code>wolfN1<code>| number of first year wolves at reproduction| | $^{wolf}N_{2,t}$   |</code>wolfN2<code>| number of second year wolves at reproduction| | $^{wolf}N_{3+,t}$   |</code>wolfN3plus<code>| number of older wolves at reproduction | | $^{wolf}P_t$   |</code>wolfP`<code>| number of wolf packs inside or outside of the park| | $^{wolf}F_t$   |</code>wolfFplus<code>| number of reproducing female wolves per pack| | $^{deerA}N_{1,t}$   |</code>deerInN1<code>,</code>deerOutN1<code>| number of yearlings of deer inside and outside of the park | | $^{deerA}N_{2,t}$   |</code>deerInN2<code>,</code>deerOutN2<code>| number of second year individuals of deer inside and outside of the park | | $^{deerA}N_{3,t}$   |</code>deerInN3<code>,</code>deerOutN3<code>| number of third year and older individuals of deer inside and outside of the park | | $^{deerA}S_{1,t}$   |</code>deerInS1<code>,</code>deerOutS1<code>| survival of a deer from birth to first summer | | $^{deerA}S_{2,t}$   |</code>deerInS2<code>,</code>deerOutS2<code>| survival of a deer from first to second summer | | $^{deerA}S_{3+,t}$   |</code>deerInS3plus<code>,</code>deerOutS3plus<code>| survival of a deer from second summer onward | | $^{deerA}f_{t}$   |</code>deerInf<code>,</code>deerOutf<code>| average number of young produced per female in one year | | $^{chamoisA}S_{1,t}$   |</code>chamoisInS1<code>,</code>chamoisOutS1<code>| survival of a chamois from birth to first summer | | $^{chamoisA}S_{2,t}$   |</code>chamoisInS2<code>,</code>chamoisOutS2<code>| survival of a chamois from first to second summer | | $^{chamoisA}S_{3+,t}$   |</code>chamoisInS3plus<code>,</code>chamoisOutS3plus<code>| survival of a chamois from second summer onward | | $^{chamoisA}f_{t}$   |</code>chamoisInf<code>,</code>chamoisOutf`</td>
+<td><code>wolfS0</code></td>
+<td>annual survival of a wolf from birth to first summer</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{wolf}S_{1,t}\)</span></td>
+<td><code>wolfS1</code></td>
+<td>annual survival of a wolf from first to second summer</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{wolf}S_{2+,t}\)</span></td>
+<td><code>wolfS2plus</code></td>
+<td>annual survival of a wolf from second summer onward</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{wolf}f_t\)</span></td>
+<td><code>wolff</code></td>
+<td>average number of puppies produced per female in one year</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{wolf}P_t\)</span></td>
+<td><code>wolfP</code></td>
+<td>number of wolf packs inside or outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{wolf}F_t\)</span></td>
+<td><code>wolfFplus</code></td>
+<td>number of reproducing female wolves per pack</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{deerA}N_{0,t}\)</span></td>
+<td><code>deerInN0</code>, <code>deerOutN0</code></td>
+<td>number of juveniles of deer inside and outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{deerA}N_{1,t}\)</span></td>
+<td><code>deerInN1</code>, <code>deerOutN1</code></td>
+<td>number of yearlings of deer inside and outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{deerA}N_{2,t}\)</span></td>
+<td><code>deerInN2</code>, <code>deerOutN2</code></td>
+<td>number of second year individuals of deer inside and outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{deerA}N_{3,t}\)</span></td>
+<td><code>deerInN3</code>, <code>deerOutN3</code></td>
+<td>number of third year and older individuals of deer inside and outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{deerA}S_{0,t}\)</span></td>
+<td><code>deerInS0</code>, <code>deerOutS0</code></td>
+<td>survival of a deer from birth to first summer</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{deerA}S_{1,t}\)</span></td>
+<td><code>deerInS1</code>, <code>deerOutS1</code></td>
+<td>survival of a deer from first to second summer</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{deerA}S_{2+,t}\)</span></td>
+<td><code>deerInS2plus</code>, <code>deerOutS2plus</code></td>
+<td>survival of a deer from second summer onward</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{deerA}f_{t}\)</span></td>
+<td><code>deerInf</code>, <code>deerOutf</code></td>
+<td>average number of young produced per female in one year</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{chamoisA}N_{0,t}\)</span></td>
+<td><code>chamoisInN0</code>, <code>chamoisOutN0</code></td>
+<td>number of juveniles of chamois inside and outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{chamoisA}N_{1,t}\)</span></td>
+<td><code>chamoisInN1</code>, <code>chamoisOutN1</code></td>
+<td>number of yearlings of chamois inside and outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{chamoisA}N_{2,t}\)</span></td>
+<td><code>chamoisInN2</code>, <code>chamoisOutN2</code></td>
+<td>number of second year individuals of chamois inside and outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{chamoisA}N_{3,t}\)</span></td>
+<td><code>chamoisInN3</code>, <code>chamoisOutN3</code></td>
+<td>number of third year and older individuals of chamois inside and outside of the park</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{chamoisA}S_{0,t}\)</span></td>
+<td><code>chamoisInS1</code>, <code>chamoisOutS1</code></td>
+<td>survival of a chamois from birth to first summer</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{chamoisA}S_{1,t}\)</span></td>
+<td><code>chamoisInS2</code>, <code>chamoisOutS2</code></td>
+<td>survival of a chamois from first to second summer</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{chamoisA}S_{2+,t}\)</span></td>
+<td><code>chamoisInS3plus</code>, <code>chamoisOutS3plus</code></td>
+<td>survival of a chamois from second summer onward</td>
+</tr>
+<tr>
+<td><span class="math inline">\(^{chamoisA}f_{t}\)</span></td>
+<td><code>chamoisInf</code>, <code>chamoisOutf</code></td>
 <td>average number of young produced per female in one year</td>
 </tr>
 </tbody>

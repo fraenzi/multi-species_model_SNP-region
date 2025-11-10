@@ -45,26 +45,31 @@ TODO: include ranges of values used
 
 | in text           | in code        | description |
 | ----------------- | -------------- |----------- |
-| $^{wolf}S_{0,t}$      | `wolfS0``       | annual survival of a wolf from birth to first summer |
-| $^{wolf}S_{1,t}$      | `wolfS1`      | annual survival of a wolf from first to second summer |
-| $^{wolf}S_{2+,t}$   | `wolfS2plus`   | annual survival of a wolf from second summer onward |
-| $^{wolf}f_t$   | `wolff`   | average number of puppies produced per female in one year |
 | $^{wolf}N_{0,t}$   | `wolfN0`    | number of puppies|
 | $^{wolf}N_{1,t}$   | `wolfN1`    | number of first year wolves at reproduction|
 | $^{wolf}N_{2,t}$   | `wolfN2`   | number of second year wolves at reproduction|
 | $^{wolf}N_{3+,t}$   | `wolfN3plus`   | number of older wolves at reproduction |
-| $^{wolf}P_t$   | `wolfP``   | number of wolf packs inside or outside of the park|
+| $^{wolf}S_{0,t}$      | `wolfS0`       | annual survival of a wolf from birth to first summer |
+| $^{wolf}S_{1,t}$      | `wolfS1`      | annual survival of a wolf from first to second summer |
+| $^{wolf}S_{2+,t}$   | `wolfS2plus`   | annual survival of a wolf from second summer onward |
+| $^{wolf}f_t$   | `wolff`   | average number of puppies produced per female in one year |
+| $^{wolf}P_t$   | `wolfP`   | number of wolf packs inside or outside of the park|
 | $^{wolf}F_t$   | `wolfFplus`   | number of reproducing female wolves per pack|
+| $^{deerA}N_{0,t}$   | `deerInN0`, `deerOutN0`        | number of juveniles of deer inside and outside of the park |
 | $^{deerA}N_{1,t}$   | `deerInN1`, `deerOutN1`        | number of yearlings of deer inside and outside of the park |
 | $^{deerA}N_{2,t}$   | `deerInN2`, `deerOutN2`        | number of second year individuals of deer inside and outside of the park |
 | $^{deerA}N_{3,t}$   | `deerInN3`, `deerOutN3`        | number of third year and older individuals of deer inside and outside of the park |
-| $^{deerA}S_{1,t}$   |  `deerInS1`, `deerOutS1`        | survival of a deer from birth to first summer |
-| $^{deerA}S_{2,t}$   | `deerInS2`, `deerOutS2`        | survival of a deer from first to second summer |
-| $^{deerA}S_{3+,t}$   | `deerInS3plus`, `deerOutS3plus`        | survival of a deer from second summer onward |
+| $^{deerA}S_{0,t}$   |  `deerInS0`, `deerOutS0`        | survival of a deer from birth to first summer |
+| $^{deerA}S_{1,t}$   | `deerInS1`, `deerOutS1`        | survival of a deer from first to second summer |
+| $^{deerA}S_{2+,t}$   | `deerInS2plus`, `deerOutS2plus`        | survival of a deer from second summer onward |
 | $^{deerA}f_{t}$   | `deerInf`, `deerOutf`        | average number of young produced per female in one year |
-| $^{chamoisA}S_{1,t}$   | `chamoisInS1`, `chamoisOutS1`        | survival of a chamois from birth to first summer |
-| $^{chamoisA}S_{2,t}$   | `chamoisInS2`, `chamoisOutS2`        | survival of a chamois from first to second summer |
-| $^{chamoisA}S_{3+,t}$   | `chamoisInS3plus`, `chamoisOutS3plus`        | survival of a chamois from second summer onward |
+| $^{chamoisA}N_{0,t}$   | `chamoisInN0`, `chamoisOutN0`        | number of juveniles of chamois inside and outside of the park |
+| $^{chamoisA}N_{1,t}$   | `chamoisInN1`, `chamoisOutN1`        | number of yearlings of chamois inside and outside of the park |
+| $^{chamoisA}N_{2,t}$   | `chamoisInN2`, `chamoisOutN2`        | number of second year individuals of chamois inside and outside of the park |
+| $^{chamoisA}N_{3,t}$   | `chamoisInN3`, `chamoisOutN3`        | number of third year and older individuals of chamois inside and outside of the park |
+| $^{chamoisA}S_{0,t}$   | `chamoisInS1`, `chamoisOutS1`        | survival of a chamois from birth to first summer |
+| $^{chamoisA}S_{1,t}$   | `chamoisInS2`, `chamoisOutS2`        | survival of a chamois from first to second summer |
+| $^{chamoisA}S_{2+,t}$   | `chamoisInS3plus`, `chamoisOutS3plus`        | survival of a chamois from second summer onward |
 | $^{chamoisA}f_{t}$   | `chamoisInf`, `chamoisOutf`        | average number of young produced per female in one year |
 
 
