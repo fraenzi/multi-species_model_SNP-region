@@ -23,7 +23,7 @@
 <meta name="author" content="Fränzi Korner-Nievergelt" />
 
 
-<meta name="date" content="2025-08-21" />
+<meta name="date" content="2025-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -330,12 +331,12 @@ div.csl-indent {
 <span id="cb10-3"><a href="functions-for-the-demographic-parameters.html#cb10-3" tabindex="-1"></a>S2 <span class="ot">&lt;-</span> <span class="fl">0.75</span></span>
 <span id="cb10-4"><a href="functions-for-the-demographic-parameters.html#cb10-4" tabindex="-1"></a>S3plus <span class="ot">&lt;-</span> <span class="fl">0.85</span></span>
 <span id="cb10-5"><a href="functions-for-the-demographic-parameters.html#cb10-5" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fl">1.1</span></span>
-<span id="cb10-6"><a href="functions-for-the-demographic-parameters.html#cb10-6" tabindex="-1"></a>deerLeslie <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,</span>
+<span id="cb10-6"><a href="functions-for-the-demographic-parameters.html#cb10-6" tabindex="-1"></a>deerLeslie <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S2,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S3plus,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S3plus,</span>
 <span id="cb10-7"><a href="functions-for-the-demographic-parameters.html#cb10-7" tabindex="-1"></a>                       S1, <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
 <span id="cb10-8"><a href="functions-for-the-demographic-parameters.html#cb10-8" tabindex="-1"></a>                       <span class="dv">0</span>,S2,<span class="dv">0</span>,<span class="dv">0</span>,</span>
 <span id="cb10-9"><a href="functions-for-the-demographic-parameters.html#cb10-9" tabindex="-1"></a>                       <span class="dv">0</span>,<span class="dv">0</span>,S3plus,S3plus), <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
 <span id="cb10-10"><a href="functions-for-the-demographic-parameters.html#cb10-10" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">Re</span>(<span class="fu">eigen</span>(deerLeslie)<span class="sc">$</span>values))</span></code></pre></div>
-<pre><code>## [1] 1.024414</code></pre>
+<pre><code>## [1] 1.079313</code></pre>
 <p>We assume that deer survival is lower the higher the wolf population and juveniles are more strongly affected by the wolf compared to adults. Further, the effect of the wolf is larger the larger the proportion of deer in the diet of the wolf.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="functions-for-the-demographic-parameters.html#cb12-1" tabindex="-1"></a><span class="co"># x = wolf population (normalised, 0-1), </span></span>
 <span id="cb12-2"><a href="functions-for-the-demographic-parameters.html#cb12-2" tabindex="-1"></a><span class="co"># propindiet = proportion of deer in wolf diet</span></span>
@@ -387,16 +388,16 @@ div.csl-indent {
 <p>lifespan is upt to 21 or 22 years for males and females respectively <span class="citation">(<a href="#ref-schweizerische_gesellschaft_fur_wildtierbiologie_sgw_atlas_2021">Wildtierbiologie SGW 2021</a>)</span>.</p>
 <p>survival of chamois depends on NDVI and red deer population. Survival may be low when deer population is high and NDVI is high, survival may be high when NDVI is high and deer population is low. When NDVI is low, chamois survival may not be affected. Maybe winter survival of chamois depends on summer condition.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="functions-for-the-demographic-parameters.html#cb14-1" tabindex="-1"></a><span class="co"># expected population growth rate; trying out demographic parameters that produce plausible growth </span></span>
-<span id="cb14-2"><a href="functions-for-the-demographic-parameters.html#cb14-2" tabindex="-1"></a>S1 <span class="ot">&lt;-</span> <span class="fl">0.6</span></span>
-<span id="cb14-3"><a href="functions-for-the-demographic-parameters.html#cb14-3" tabindex="-1"></a>S2 <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
-<span id="cb14-4"><a href="functions-for-the-demographic-parameters.html#cb14-4" tabindex="-1"></a>S3plus <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb14-2"><a href="functions-for-the-demographic-parameters.html#cb14-2" tabindex="-1"></a>S1 <span class="ot">&lt;-</span> <span class="fl">0.6</span> <span class="co"># survival from 0 to 1</span></span>
+<span id="cb14-3"><a href="functions-for-the-demographic-parameters.html#cb14-3" tabindex="-1"></a>S2 <span class="ot">&lt;-</span> <span class="fl">0.8</span> <span class="co"># survival from 1 to 2</span></span>
+<span id="cb14-4"><a href="functions-for-the-demographic-parameters.html#cb14-4" tabindex="-1"></a>S3plus <span class="ot">&lt;-</span> s3plus <span class="ot">&lt;-</span> <span class="fl">0.9</span> <span class="co">#survival from 2 year onward </span></span>
 <span id="cb14-5"><a href="functions-for-the-demographic-parameters.html#cb14-5" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
-<span id="cb14-6"><a href="functions-for-the-demographic-parameters.html#cb14-6" tabindex="-1"></a>deerLeslie <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S1,</span>
+<span id="cb14-6"><a href="functions-for-the-demographic-parameters.html#cb14-6" tabindex="-1"></a>deerLeslie <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S2,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S3plus,f<span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>S3plus,</span>
 <span id="cb14-7"><a href="functions-for-the-demographic-parameters.html#cb14-7" tabindex="-1"></a>                       S1, <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
 <span id="cb14-8"><a href="functions-for-the-demographic-parameters.html#cb14-8" tabindex="-1"></a>                       <span class="dv">0</span>,S2,<span class="dv">0</span>,<span class="dv">0</span>,</span>
 <span id="cb14-9"><a href="functions-for-the-demographic-parameters.html#cb14-9" tabindex="-1"></a>                       <span class="dv">0</span>,<span class="dv">0</span>,S3plus,S3plus), <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
 <span id="cb14-10"><a href="functions-for-the-demographic-parameters.html#cb14-10" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">Re</span>(<span class="fu">eigen</span>(deerLeslie)<span class="sc">$</span>values))</span></code></pre></div>
-<pre><code>## [1] 1.040706</code></pre>
+<pre><code>## [1] 1.096916</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="functions-for-the-demographic-parameters.html#cb16-1" tabindex="-1"></a><span class="co"># x = wolf population (normalised, 0-1), </span></span>
 <span id="cb16-2"><a href="functions-for-the-demographic-parameters.html#cb16-2" tabindex="-1"></a><span class="co"># propindiet = proportion of chamois in wolf diet</span></span>
 <span id="cb16-3"><a href="functions-for-the-demographic-parameters.html#cb16-3" tabindex="-1"></a>FUNchamoisS1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">propindiet=</span><span class="dv">1</span>) <span class="fu">plogis</span>(<span class="fu">qlogis</span>(S1)<span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>x<span class="sc">*</span>propindiet)</span>

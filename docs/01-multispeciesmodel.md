@@ -1,7 +1,7 @@
 ---
 title: "Tryout of the system model"
 author: Fränzi Korner-Nievergelt
-date: "2025-08-21"
+date: "2025-11-10"
 output:
   bookdown::html_document2:
     toc: true
@@ -34,24 +34,27 @@ We adopt the following logic for parameter names:
 1. species   
 2. area (A = In for within the park, Out for outside the park)
 3. parameter name (survival, reproduction etc.)  
-4. age index (1 = first year (birth to one year after birth), 2 second year,  ... , 2+ or 2plus includes the second and all following years)  
+4. age index (0 = juvenile (birth to one year after birth), 1 = first year (to second year),  2 = second year (to third year), ... , 3+ or 3plus includes the third and all following years  
 5. time (year)  
 
 
 We follow the terminology given in @Thomson.2009d for survival parameters: $S$ for true survival, $\phi$ for apparent survival, i.e. the product of site fidelity and survival.
 
+TODO: include ranges of values used 
+
 
 | in text           | in code        | description |
 | ----------------- | -------------- |----------- |
-| $^{wolfA}S_{1,t}$      | `wolfInS1`, `wolfOutS1`       | annual survival of a wolf from birth to first summer |
-| $^{wolfA}S_{2,t}$      | `wolfInS2`,  `wolfOutS2`      | annual survival of a wolf from first to second summer |
-| $^{wolfA}S_{3+,t}$   | `wolfInS3plus`, `wolfOutS3plus`   | annual survival of a wolf from second summer onward |
-| $^{wolfA}f_t$   | `wolfInf`, `wolfOutf`   | average number of puppies produced per female in one year |
-| $^{wolfA}N_{1,t}$   | `wolfInN1`,`wolfOutfN1`    | number of first year wolves just before reproduction inside or outside of the park|
-| $^{wolfA}N_{2,t}$   | `wolfInN2`, `wolfOutN2`   | number of second year wolves just before reproduction inside or outside of the park|
-| $^{wolfA}N_{3+,t}$   | `wolfInN3plus`, `wolfOutN3plus`   | number of older wolves just before reproduction inside or outside of the park|
-| $^{wolfA}P_t$   | `wolfInP`, `wolfOutP`   | number of wolf packs inside or outside of the park|
-| $^{wolfA}F_t$   | `wolfInFplus`, `wolfOutFplus`   | number of reproducing female wolves inside or outside of the park|
+| $^{wolf}S_{0,t}$      | `wolfS0``       | annual survival of a wolf from birth to first summer |
+| $^{wolf}S_{1,t}$      | `wolfS1`      | annual survival of a wolf from first to second summer |
+| $^{wolf}S_{2+,t}$   | `wolfS2plus`   | annual survival of a wolf from second summer onward |
+| $^{wolf}f_t$   | `wolff`   | average number of puppies produced per female in one year |
+| $^{wolf}N_{0,t}$   | `wolfN0`    | number of puppies|
+| $^{wolf}N_{1,t}$   | `wolfN1`    | number of first year wolves at reproduction|
+| $^{wolf}N_{2,t}$   | `wolfN2`   | number of second year wolves at reproduction|
+| $^{wolf}N_{3+,t}$   | `wolfN3plus`   | number of older wolves at reproduction |
+| $^{wolf}P_t$   | `wolfP``   | number of wolf packs inside or outside of the park|
+| $^{wolf}F_t$   | `wolfFplus`   | number of reproducing female wolves per pack|
 | $^{deerA}N_{1,t}$   | `deerInN1`, `deerOutN1`        | number of yearlings of deer inside and outside of the park |
 | $^{deerA}N_{2,t}$   | `deerInN2`, `deerOutN2`        | number of second year individuals of deer inside and outside of the park |
 | $^{deerA}N_{3,t}$   | `deerInN3`, `deerOutN3`        | number of third year and older individuals of deer inside and outside of the park |
@@ -235,7 +238,7 @@ S1 <- 0.6
 S2 <- 0.75
 S3plus <- 0.85
 f <- 1.1
-deerLeslie <- matrix(c(0,f/2*S1,f/2*S1,f/2*S1,
+deerLeslie <- matrix(c(0,f/2*S2,f/2*S3plus,f/2*S3plus,
                        S1, 0,0,0,
                        0,S2,0,0,
                        0,0,S3plus,S3plus), ncol=4, nrow=4, byrow=TRUE)
@@ -243,7 +246,7 @@ max(Re(eigen(deerLeslie)$values))
 ```
 
 ```
-## [1] 1.024414
+## [1] 1.079313
 ```
 
 
@@ -314,11 +317,11 @@ survival of chamois depends on NDVI and red deer population. Survival may be low
 
 ```r
 # expected population growth rate; trying out demographic parameters that produce plausible growth 
-S1 <- 0.6
-S2 <- 0.8
-S3plus <- 0.9
+S1 <- 0.6 # survival from 0 to 1
+S2 <- 0.8 # survival from 1 to 2
+S3plus <- s3plus <- 0.9 #survival from 2 year onward 
 f <- 0.9
-deerLeslie <- matrix(c(0,f/2*S1,f/2*S1,f/2*S1,
+deerLeslie <- matrix(c(0,f/2*S2,f/2*S3plus,f/2*S3plus,
                        S1, 0,0,0,
                        0,S2,0,0,
                        0,0,S3plus,S3plus), ncol=4, nrow=4, byrow=TRUE)
@@ -326,7 +329,7 @@ max(Re(eigen(deerLeslie)$values))
 ```
 
 ```
-## [1] 1.040706
+## [1] 1.096916
 ```
 
 
@@ -373,6 +376,7 @@ FUNchamoisncalves <- function(nrfemales, npop, capacity=2000){
 ## Model runs
 
 We build pre-breeding population models. 
+-> better use a post-breeding population model because ungulate count include juveniles. 
 
 
 ```r
@@ -541,13 +545,13 @@ for(i in 1:nsim) lines(1:TT, deerOutN[,i], col=rgb(0,0,1,0.2), xaxt="n")
 text(1,max(deerOutN), adj=c(0,1) , labels="Red deer outside park")
 
 
-plot(1:TT, seq(0,max(chamoisN), length=TT), type="n", xlab="year", ylab="")
-for(i in 1:nsim) lines(1:TT, chamoisN[,i], col=rgb(0,0,0,0.2), xaxt="n")
+plot(1:TT, seq(0,max(chamoisN), length=TT), type="n", xlab="year", ylab="", xaxt="n")
+for(i in 1:nsim) lines(1:TT, chamoisN[,i], col=rgb(0,0,0,0.2))
 text(1,max(chamoisN), adj=c(0,1) , labels="Chamois region")
 
 
-plot(1:TT, seq(0,max(chamoisInN), length=TT), type="n", xlab="year", ylab="")
-for(i in 1:nsim) lines(1:TT, chamoisInN[,i], col=rgb(0,1,0,0.2), xaxt="n")
+plot(1:TT, seq(0,max(chamoisInN), length=TT), type="n", xlab="year", ylab="", xaxt="n")
+for(i in 1:nsim) lines(1:TT, chamoisInN[,i], col=rgb(0,1,0,0.2))
 text(1,max(chamoisInN), adj=c(0,1) , labels="Chamois in park")
 
 plot(1:TT, seq(0,max(chamoisOutN), length=TT), type="n", xlab="year", ylab="")

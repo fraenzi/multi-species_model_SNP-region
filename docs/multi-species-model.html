@@ -23,7 +23,7 @@
 <meta name="author" content="Fränzi Korner-Nievergelt" />
 
 
-<meta name="date" content="2025-08-21" />
+<meta name="date" content="2025-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -217,7 +218,8 @@ div.csl-indent {
 <h1><span class="header-section-number">6</span> Multi-species model<a href="multi-species-model.html#multi-species-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="model-runs" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Model runs<a href="multi-species-model.html#model-runs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We build pre-breeding population models.</p>
+<p>We build pre-breeding population models.
+-&gt; better use a post-breeding population model because ungulate count include juveniles.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="multi-species-model.html#cb18-1" tabindex="-1"></a>wolfN1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
 <span id="cb18-2"><a href="multi-species-model.html#cb18-2" tabindex="-1"></a>wolfN2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
 <span id="cb18-3"><a href="multi-species-model.html#cb18-3" tabindex="-1"></a>wolfN3plus <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow=</span>TT, <span class="at">ncol=</span>nsim)</span>
@@ -378,13 +380,13 @@ div.csl-indent {
 <span id="cb19-19"><a href="multi-species-model.html#cb19-19" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(deerOutN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Red deer outside park&quot;</span>)</span>
 <span id="cb19-20"><a href="multi-species-model.html#cb19-20" tabindex="-1"></a></span>
 <span id="cb19-21"><a href="multi-species-model.html#cb19-21" tabindex="-1"></a></span>
-<span id="cb19-22"><a href="multi-species-model.html#cb19-22" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb19-23"><a href="multi-species-model.html#cb19-23" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, chamoisN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>), <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb19-22"><a href="multi-species-model.html#cb19-22" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb19-23"><a href="multi-species-model.html#cb19-23" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, chamoisN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span>
 <span id="cb19-24"><a href="multi-species-model.html#cb19-24" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(chamoisN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Chamois region&quot;</span>)</span>
 <span id="cb19-25"><a href="multi-species-model.html#cb19-25" tabindex="-1"></a></span>
 <span id="cb19-26"><a href="multi-species-model.html#cb19-26" tabindex="-1"></a></span>
-<span id="cb19-27"><a href="multi-species-model.html#cb19-27" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisInN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb19-28"><a href="multi-species-model.html#cb19-28" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, chamoisInN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.2</span>), <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb19-27"><a href="multi-species-model.html#cb19-27" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisInN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb19-28"><a href="multi-species-model.html#cb19-28" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) <span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span>TT, chamoisInN[,i], <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span>
 <span id="cb19-29"><a href="multi-species-model.html#cb19-29" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>,<span class="fu">max</span>(chamoisInN), <span class="at">adj=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) , <span class="at">labels=</span><span class="st">&quot;Chamois in park&quot;</span>)</span>
 <span id="cb19-30"><a href="multi-species-model.html#cb19-30" tabindex="-1"></a></span>
 <span id="cb19-31"><a href="multi-species-model.html#cb19-31" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>TT, <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(chamoisOutN), <span class="at">length=</span>TT), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;year&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
