@@ -79,9 +79,6 @@ nsim <- 50 # number of Monte Carlo iterations
 
 TODO: define here all model parameters with a fixed value, initial values etc.
 - initial values
-- capacitiy for density dependence
-
-
 
 
 # Environmental variables
@@ -188,6 +185,8 @@ FUNwolfnpups <- function(nfemalesW){
 
 ### Carrying capacity
 
+todo: the carrying capacity should be replaced by resource availability per individual
+
 ```{r}
 wolfmaxN <- 30  # is used in the model to normalise the effect of wolf in the ecosystem
 
@@ -265,7 +264,7 @@ We assume that deer survival is lower the higher the wolf population and juvenil
 # propindiet = proportion of deer in wolf diet
 FUNdeerInS0 <- function(x, propindiet=1, S0=deerS0) plogis(qlogis(S0)-1*x*propindiet)
 FUNdeerInS1 <- function(x, propindiet=1, S1=deerS1) plogis(qlogis(S1)-0.8*x*propindiet)
-FUNdeerInS2plus <- function(x, propindiet=1, s2plus=deerS2plus) plogis(qlogis(S2plus)-0.6*x*propindiet)
+FUNdeerInS2plus <- function(x, propindiet=1, S2plus=deerS2plus) plogis(qlogis(S2plus)-0.6*x*propindiet)
 
 FUNdeerOutS0 <- function(x, propindiet=1) plogis(qlogis(0.6)-1*x*propindiet)
 FUNdeerOutS1 <- function(x, propindiet=1) plogis(qlogis(0.75)-0.8*x*propindiet)
@@ -422,12 +421,12 @@ chamoisN <- matrix(nrow=TT, ncol=nsim)
 for(r in 1:nsim){
 # starting populations (TODO: stable age composition)
   # TO DISCUSS: do we need to separate males and females in which species from which age on?
-  wolfN0[1,r] <- 0 #9
-  wolfN1[1,r] <- 0 #8
-  wolfN2[1,r] <- 0
-  wolfN3plus[1,r] <- 0 #2
+  wolfN0[1,r] <- 9
+  wolfN1[1,r] <- 8
+  wolfN2[1,r] <- 2
+  wolfN3plus[1,r] <- 2
   wolfN[1, r] <- wolfN0[1,r]  + wolfN1[1,r] + wolfN2[1,r] +wolfN3plus[1,r]
-  wolfP[1,r] <- 0 #1  # number of packs
+  wolfP[1,r] <- 1  # number of packs
   
   deerInN0[1,r] <- 300
   deerInN1[1,r] <- 300

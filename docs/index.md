@@ -1,7 +1,7 @@
 --- 
 title: "Development version of a multi-species population model for the SNP-region"
 author: "Fränzi Korner-Nievergelt"
-date: "2025-11-10"
+date: "2026-03-13"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [PopModAlpineSpec.bib]
@@ -22,6 +22,6 @@ The development of this model should serve to predict consequences of different 
 
 ## Acknowledgments {-}
 
-<img src="figures/titlepicture.jpg" width="1889" style="display: block; margin: auto;" />
+<img src="figures/titlepicture.jpg" width="1068" style="display: block; margin: auto;" />
 
 

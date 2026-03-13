@@ -1,6 +1,7 @@
 preface
 introduction
 terminology
+parameter-settings
 environmental-variables
 ndvi-of-alpine-meadows
 functions-for-the-demographic-parameters
