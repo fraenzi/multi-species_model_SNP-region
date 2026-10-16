@@ -6,12 +6,13 @@ output:
 ---
 
 ## Topics
-- [] Schedule and next steps towards submission of proposal FOK-SNP
+- [x] Schedule and next steps towards submission of proposal FOK-SNP
 - [] Content of current draft proposal to SNP executive board
 - [] Wolf population model
 
 ## Schedule and next steps towards submission of proposal FOK-SNP
-Info:
+
+**Info**
 - FOK could contribute CHF 10'000 to the project finances.
 - Foundations that could be ask for contributions:
   - Dr. Willi Zeller-Stiftung, Eierbrechtstrasse 46, 8053 Zürich, CH
@@ -21,7 +22,17 @@ Info:
 - The FOK-SNP wants to approve, but cannot decline, the project if there is no fieldwork involved. There is no fieldwork involved.
 
 
-Decisions:
+**Decisions**
 - Submission of proposal (Projektantrag) to FOK-SNP in February 2026.
 - We aim to ask for a contribution of CHF 10'000 by the FOK-SNP for 2027 and CHF 3'000 for 2028.
+- After revision of the project proposal for the SNP executive board, we will adapt the proposal to be submitted to the four foundations above. The wording needs to be adjusted. The proposals will be written on UniBas paper and submitted by FKN. Simon will send brief descriptions of the foundations to FKN.
+- We will manage the literature in a Zotero Group. Literature items must be tranferred between the Zotero Group and the GitHub repository only in a unidirectional way, namely from the Zotero Group to GitHub.
+
+## Content of current draft proposal to SNP executive board
+
+Decisions:
+- Main questions:
+  1. What is the effect of the presence of wolves and lynx on ungulate populations and forest rejuvenation. Included: spatially explicit modelling of primary production, landscape of fear, human impact via ungulate hung, wolf regulation, human presence (landscape of fear), current state of climate and argricultural input to primary production.
+  2. How could the ungulate hunt be adjusted to induce density-dependent regulation of the wolf population? Via the carrying capacity.
+  3. How sensitive is the effect of the presence of wolves and lynx on forest rejuvenation to the nature and strength of the landscapes of fear that humans, wolves, and lynx excert on ungulates.
 
