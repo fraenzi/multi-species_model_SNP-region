@@ -1,5 +1,27 @@
 ---
 title: "20261016_meeting_fkn_ae_proposal"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
+
+## Topics
+- [] Schedule and next steps towards submission of proposal FOK-SNP
+- [] Content of current draft proposal to SNP executive board
+- [] Wolf population model
+
+## Schedule and next steps towards submission of proposal FOK-SNP
+Info:
+- FOK could contribute CHF 10'000 to the project finances.
+- Foundations that could be ask for contributions:
+  - Dr. Willi Zeller-Stiftung, Eierbrechtstrasse 46, 8053 Zürich, CH
+  - Velux Stiftung, https://veluxstiftung.ch/
+  - Stiftung zur internationalen Erhaltung der Pflanzenvielfalt, Ballyweg 23, c/o Franz-Xaver Dettling, 6440 Brunnen, CH
+  - Stiftung Natur und Wildtiere, Forstackerstrasse 2a, c/o JagdSchweiz, 4800 Zofingen, CH
+- The FOK-SNP wants to approve, but cannot decline, the project if there is no fieldwork involved. There is no fieldwork involved.
+
+
+Decisions:
+- Submission of proposal (Projektantrag) to FOK-SNP in February 2026.
+- We aim to ask for a contribution of CHF 10'000 by the FOK-SNP for 2027 and CHF 3'000 for 2028.
 
